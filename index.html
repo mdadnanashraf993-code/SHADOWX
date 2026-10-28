@@ -1,416 +1,139 @@
-﻿ 
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHADOWX | Online Tools</title>
-
+<title>Shadowx tool</title>
+<meta name="description" content="Free browser-based developer, file and text tools from Shadowx tool.">
 <style>
+:root{--bg:#09000f;--panel:#160b20;--panel2:#21102e;--purple:#a855f7;--purple2:#c084fc;--text:#f7f1ff;--muted:#c4b5d4;--border:#5b267e}
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#08040f;
-  color:#f5edff;
-}
-header{
-  text-align:center;
-  padding:35px 15px;
-  background:linear-gradient(135deg,#19062c,#090512);
-  border-bottom:1px solid #862cff;
-}
-header h1{
-  margin:0;
-  color:#c77dff;
-  font-size:42px;
-  text-shadow:0 0 18px #9b30ff;
-}
-header p{color:#c9b5dd}
-.search{
-  display:block;
-  width:min(90%,500px);
-  margin:25px auto;
-  padding:13px;
-  border:1px solid #8e36d9;
-  border-radius:10px;
-  background:#160c22;
-  color:white;
-  font-size:16px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:18px;
-  max-width:1150px;
-  margin:auto;
-  padding:20px;
-}
-.card{
-  background:#130b1d;
-  border:1px solid #51217a;
-  border-radius:14px;
-  padding:20px;
-  box-shadow:0 0 12px #40106a55;
-}
-.card h2{color:#ce9aff;font-size:21px}
-input,select,textarea,button{
-  width:100%;
-  padding:11px;
-  margin:7px 0;
-  border-radius:8px;
-  border:1px solid #65319a;
-  background:#090511;
-  color:white;
-  font-size:14px;
-}
-button{
-  background:#7624c9;
-  border:0;
-  font-weight:bold;
-  cursor:pointer;
-}
-button:hover{background:#963cff}
-.result{
-  overflow-wrap:anywhere;
-  color:#d9b5ff;
-  margin-top:10px;
-}
-small{color:#bda9d0}
-a{color:#d9aaff}
-footer{
-  text-align:center;
-  padding:25px;
-  color:#ad96c3;
-}
+body{margin:0;background:var(--bg);color:var(--text);font:16px Arial,sans-serif}
+header{text-align:center;padding:28px 15px;background:#12001d;border-bottom:2px solid var(--purple);box-shadow:0 0 20px #6b21a8}
+h1{margin:0;color:var(--purple2);font-size:clamp(28px,5vw,42px);text-transform:none;text-shadow:0 0 14px #9333ea}
+header p{color:var(--muted);margin-bottom:0}
+.wrap{width:min(1200px,94%);margin:22px auto}
+#search{display:block;width:100%;max-width:620px;margin:0 auto 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
+.tool{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:18px;box-shadow:0 0 10px #240d35;min-width:0}
+.tool h2{font-size:20px;color:var(--purple2);margin:0 0 8px}
+.tool p{color:var(--muted);font-size:14px;line-height:1.45}
+input,textarea,select,button{font:inherit;border-radius:7px;padding:10px;width:100%;margin:6px 0;background:#0d0613;color:var(--text);border:1px solid #7133a0}
+input[type=file]{font-size:13px}
+input[type=checkbox]{width:auto}
+button{background:#7e22ce;border-color:#a855f7;font-weight:bold;cursor:pointer}
+button:hover{background:#9333ea}
+.row{display:flex;gap:8px;align-items:center}
+.row>*{flex:1;min-width:0}
+.out{margin-top:9px;padding:10px;background:#0c0611;border:1px solid #3b1b50;border-radius:7px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:24px;font-size:14px;color:#e9d5ff}
+.small{font-size:12px;color:var(--muted)}
+footer{text-align:center;padding:22px;color:var(--muted);border-top:1px solid var(--border)}
+.credit{margin:10px 0 0;color:var(--purple2);font-weight:bold;letter-spacing:1px;text-shadow:0 0 8px #9333ea}
 </style>
 </head>
-
 <body>
 <header>
-  <h1>SHADOWX</h1>
-  <p>9 Powerful Online Tools — One Website</p>
+<h1>Shadowx tool</h1>
+<p>Useful file, text and developer tools — no AI required</p>
 </header>
+<main class="wrap">
+<input id="search" placeholder="Search tools..." oninput="searchTools()" aria-label="Search tools">
+<div class="grid" id="tools">
 
-<input class="search" id="search" placeholder="Search tools..." oninput="searchTools()">
-
-<main class="grid" id="tools">
-
-<!-- 1 Password Generator -->
-<section class="card">
-<h2>1. Password Generator</h2>
-<label>Password length</label>
-<input type="number" id="passLength" min="6" max="64" value="16">
-<button onclick="makePassword()">Generate Password</button>
-<input id="passwordResult" placeholder="Your password">
-<button onclick="copyText('passwordResult')">Copy Password</button>
+<section class="tool" data-name="csv cleaner duplicate blank rows">
+<h2>1. CSV Cleaner</h2>
+<p>Remove duplicate rows and blank rows from a CSV file.</p>
+<input id="csvFile" type="file" accept=".csv,text/csv">
+<button onclick="cleanCSV()">Clean CSV & Download</button>
+<div class="out" id="csvOut">Choose a CSV file.</div>
 </section>
 
-<!-- 2 QR Code Generator -->
-<section class="card">
-<h2>2. QR Code Generator</h2>
-<input id="qrText" placeholder="Enter text or website link">
-<button onclick="makeQR()">Generate QR Code</button>
-<div class="result" id="qrResult"></div>
-<small>QR generation needs an internet connection.</small>
+<section class="tool" data-name="file diff checker compare files text">
+<h2>2. File Diff Checker</h2>
+<p>Compare two text files or paste text directly.</p>
+<input id="diffAFile" type="file">
+<input id="diffBFile" type="file">
+<textarea id="diffA" rows="3" placeholder="Or paste original text here"></textarea>
+<textarea id="diffB" rows="3" placeholder="Or paste changed text here"></textarea>
+<button onclick="compareFiles()">Compare</button>
+<div class="out" id="diffOut"></div>
 </section>
 
-<!-- 3 PDF Merge -->
-<section class="card">
-<h2>3. PDF Merge</h2>
-<input type="file" id="mergeFiles" accept="application/pdf" multiple>
-<button onclick="mergePDF()">Merge PDF Files</button>
-<div class="result" id="mergeResult"></div>
-<small>Select two or more PDF files.</small>
+<section class="tool" data-name="file hash calculator sha256">
+<h2>3. File Hash Calculator</h2>
+<p>Calculate the SHA-256 hash of a selected file in your browser.</p>
+<input id="hashFile" type="file">
+<button onclick="hashFile()">Calculate SHA-256</button>
+<div class="out" id="hashOut"></div>
 </section>
 
-<!-- 4 PDF Split -->
-<section class="card">
-<h2>4. PDF Split</h2>
-<input type="file" id="splitFile" accept="application/pdf">
-<label>Page number to extract</label>
-<input type="number" id="pageNumber" min="1" value="1">
-<button onclick="splitPDF()">Extract Page</button>
-<div class="result" id="splitResult"></div>
+<section class="tool" data-name="json schema validator">
+<h2>4. JSON Schema Validator</h2>
+<p>Paste JSON data and a JSON Schema.</p>
+<textarea id="jsonData" rows="4" placeholder='JSON data, e.g. {"name":"Ali","age":12}'></textarea>
+<textarea id="jsonSchema" rows="4" placeholder='Schema, e.g. {"type":"object","required":["name"],"properties":{"name":{"type":"string"}}}'></textarea>
+<button onclick="validateJSON()">Validate JSON</button>
+<div class="out" id="jsonOut"></div>
 </section>
 
-<!-- 5 Typing Speed Test -->
-<section class="card">
-<h2>5. Typing Speed Test</h2>
-<p id="typingPrompt">The quick brown fox jumps over the lazy dog.</p>
-<textarea id="typingInput" rows="4" placeholder="Start typing here..." oninput="checkTyping()"></textarea>
-<button onclick="startTyping()">Start / Reset Test</button>
-<p id="typingResult" class="result">Time: 0 seconds</p>
-</section>
-
-<!-- 6 Color Picker -->
-<section class="card">
-<h2>6. Color Picker</h2>
-<input type="color" id="colorInput" value="#a020f0" oninput="showColor()">
-<input id="hexValue" value="#a020f0" readonly>
-<button onclick="copyText('hexValue')">Copy HEX Color</button>
-<div id="colorPreview" style="height:65px;border-radius:8px;background:#a020f0"></div>
-</section>
-
-<!-- 7 Unit Converter -->
-<section class="card">
-<h2>7. Unit Converter</h2>
-<input type="number" id="unitValue" value="1" placeholder="Enter value">
-<select id="unitType">
-<option value="km-mi">Kilometres → Miles</option>
-<option value="mi-km">Miles → Kilometres</option>
-<option value="kg-lb">Kilograms → Pounds</option>
-<option value="lb-kg">Pounds → Kilograms</option>
-<option value="cm-in">Centimetres → Inches</option>
-<option value="in-cm">Inches → Centimetres</option>
-<option value="c-f">Celsius → Fahrenheit</option>
-<option value="f-c">Fahrenheit → Celsius</option>
-<option value="mb-kb">MB → KB</option>
-<option value="kb-mb">KB → MB</option>
+<section class="tool" data-name="bulk file renamer rename files">
+<h2>5. Bulk File Renamer</h2>
+<p>Select multiple files and download renamed copies.</p>
+<input id="renameFiles" type="file" multiple>
+<input id="renamePrefix" value="file" placeholder="New name prefix">
+<select id="renameOrder">
+<option value="number">prefix-1, prefix-2...</option>
+<option value="same">Keep original name (add prefix)</option>
 </select>
-<button onclick="convertUnit()">Convert</button>
-<p class="result" id="unitResult">Result appears here.</p>
+<button onclick="renameFiles()">Prepare renamed downloads</button>
+<div class="out" id="renameOut"></div>
 </section>
 
-<!-- 8 Grammar Checker -->
-<section class="card">
-<h2>8. Grammar Checker</h2>
-<textarea id="grammarText" rows="5" placeholder="Write English text here..."></textarea>
-<button onclick="checkGrammar()">Check Grammar</button>
-<div id="grammarResult" class="result"></div>
-<small>Requires internet and a public grammar-checking service.</small>
+<section class="tool" data-name="folder file list maker">
+<h2>6. Folder File List Maker</h2>
+<p>Select a folder or multiple files to make a list.</p>
+<input id="folderFiles" type="file" multiple webkitdirectory directory>
+<button onclick="makeFileList()">Create file list</button>
+<button onclick="downloadText('folderListOut','file-list.txt')">Download list</button>
+<div class="out" id="folderListOut"></div>
 </section>
 
-<!-- 9 Online Code Maker -->
-<section class="card">
-<h2>9. Online Code Maker</h2>
-<select id="language">
-<option value="python">Python</option>
-<option value="javascript">JavaScript</option>
-<option value="java">Java</option>
-<option value="c">C</option>
-<option value="cpp">C++</option>
-<option value="php">PHP</option>
+<section class="tool" data-name="text binary converter">
+<h2>7. Text to Binary Converter</h2>
+<p>Convert text to UTF-8 binary and binary back to text.</p>
+<textarea id="binaryInput" rows="3" placeholder="Enter text or binary"></textarea>
+<div class="row">
+<button onclick="toBinary()">Text → Binary</button>
+<button onclick="fromBinary()">Binary → Text</button>
+</div>
+<div class="out" id="binaryOut"></div>
+</section>
+
+<section class="tool" data-name="hexadecimal converter">
+<h2>8. Hexadecimal Converter</h2>
+<p>Convert a whole number between decimal, binary and hexadecimal.</p>
+<input id="numInput" type="text" value="255" placeholder="Enter number">
+<select id="numBase">
+<option value="10">Input is Decimal</option>
+<option value="2">Input is Binary</option>
+<option value="16">Input is Hexadecimal</option>
 </select>
-<textarea id="codeInput" rows="7" placeholder="Write or paste your code here...">print("Hello SHADOWX!")</textarea>
-<button onclick="downloadCode()">Download Code</button>
-<button onclick="runCode()">Run Code (Internet Required)</button>
-<pre id="codeResult" class="result" style="white-space:pre-wrap"></pre>
+<button onclick="convertNumber()">Convert</button>
+<div class="out" id="numOut"></div>
 </section>
 
-</main>
+<section class="tool" data-name="cron expression tester">
+<h2>9. Cron Expression Tester</h2>
+<p>Basic 5-field cron expression explanation.</p>
+<input id="cronInput" value="*/5 * * * *" placeholder="minute hour day month weekday">
+<button onclick="explainCron()">Explain expression</button>
+<div class="out" id="cronOut"></div>
+</section>
 
-<footer>© 2026 SHADOWX | Online Tools</footer>
-
-<script>
-function searchTools(){
-  const q=document.getElementById("search").value.toLowerCase();
-  document.querySelectorAll(".card").forEach(card=>{
-    card.style.display=card.innerText.toLowerCase().includes(q)?"block":"none";
-  });
-}
-
-function makePassword(){
-  let length=parseInt(document.getElementById("passLength").value,10);
-  if(!Number.isFinite(length)) length=16;
-  length=Math.max(6,Math.min(64,length));
-  const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";
-  let out="";
-  if(window.crypto && window.crypto.getRandomValues){
-    const values=new Uint32Array(length);
-    window.crypto.getRandomValues(values);
-    for(let i=0;i<length;i++) out+=chars[values[i]%chars.length];
-  }else{
-    for(let i=0;i<length;i++) out+=chars[Math.floor(Math.random()*chars.length)];
-  }
-  document.getElementById("passwordResult").value=out;
-}
-
-function copyText(id){
-  const el=document.getElementById(id);
-  el.select();
-  try{
-    const ok=document.execCommand("copy");
-    alert(ok?"Copied!":"Copy failed. Please copy manually.");
-  }catch(e){alert("Please copy the text manually.");}
-}
-
-function makeQR(){
-  const text=document.getElementById("qrText").value.trim();
-  const result=document.getElementById("qrResult");
-  if(!text){result.textContent="Please enter text or a link.";return;}
-  result.innerHTML="";
-  const img=document.createElement("img");
-  img.alt="Generated QR code";
-  img.width=200;
-  img.height=200;
-  img.src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+encodeURIComponent(text);
-  result.appendChild(img);
-  const link=document.createElement("a");
-  link.href=img.src;
-  link.target="_blank";
-  link.rel="noopener";
-  link.textContent="Open QR image";
-  result.appendChild(document.createElement("br"));
-  result.appendChild(link);
-}
-
-async function mergePDF(){
-  const files=Array.from(document.getElementById("mergeFiles").files);
-  const out=document.getElementById("mergeResult");
-  if(files.length<2){out.textContent="Select at least two PDF files.";return;}
-  out.textContent="Merging PDFs...";
-  try{
-    if(!window.PDFLib) await loadScript("https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js");
-    const merged=await PDFLib.PDFDocument.create();
-    for(const file of files){
-      const doc=await PDFLib.PDFDocument.load(await file.arrayBuffer());
-      const pages=await merged.copyPages(doc,doc.getPageIndices());
-      pages.forEach(page=>merged.addPage(page));
-    }
-    downloadBlob(new Blob([await merged.save()],{type:"application/pdf"}),"merged.pdf");
-    out.textContent="Merged PDF downloaded.";
-  }catch(e){out.textContent="Merge failed. Check the PDF files and internet connection.";}
-}
-
-async function splitPDF(){
-  const file=document.getElementById("splitFile").files[0];
-  const n=parseInt(document.getElementById("pageNumber").value,10);
-  const out=document.getElementById("splitResult");
-  if(!file){out.textContent="Choose a PDF file first.";return;}
-  out.textContent="Extracting page...";
-  try{
-    if(!window.PDFLib) await loadScript("https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js");
-    const doc=await PDFLib.PDFDocument.load(await file.arrayBuffer());
-    if(!n||n<1||n>doc.getPageCount()){out.textContent="Page number is outside the PDF range.";return;}
-    const result=await PDFLib.PDFDocument.create();
-    const pages=await result.copyPages(doc,[n-1]);
-    result.addPage(pages[0]);
-    downloadBlob(new Blob([await result.save()],{type:"application/pdf"}),"page-"+n+".pdf");
-    out.textContent="Extracted page downloaded.";
-  }catch(e){out.textContent="Could not read this PDF. Try another file.";}
-}
-
-function loadScript(src){
-  return new Promise((resolve,reject)=>{
-    const s=document.createElement("script");
-    s.src=src;
-    s.onload=resolve;
-    s.onerror=reject;
-    document.head.appendChild(s);
-  });
-}
-
-function downloadBlob(blob,name){
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download=name;
-  document.body.appendChild(a);
-  a.click();
-  a.parentNode.removeChild(a);
-  setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-
-let typingStart=0;
-let typingTimer=null;
-function startTyping(){
-  clearInterval(typingTimer);
-  typingStart=Date.now();
-  document.getElementById("typingInput").value="";
-  document.getElementById("typingInput").focus();
-  document.getElementById("typingResult").textContent="Time: 0 seconds";
-  typingTimer=setInterval(()=>{
-    const seconds=Math.floor((Date.now()-typingStart)/1000);
-    document.getElementById("typingResult").textContent="Time: "+seconds+" seconds";
-  },1000);
-}
-function checkTyping(){
-  if(!typingStart) return;
-  const typed=document.getElementById("typingInput").value;
-  const seconds=Math.max(1,(Date.now()-typingStart)/1000);
-  const words=typed.trim()?typed.trim().split(/\s+/).length:0;
-  const wpm=Math.round(words/(seconds/60));
-  const accuracyText=typed===document.getElementById("typingPrompt").textContent?" — Exact match!":"";
-  document.getElementById("typingResult").textContent=
-    "Words: "+words+" | Speed: "+wpm+" WPM"+accuracyText;
-}
-
-function showColor(){
-  const color=document.getElementById("colorInput").value;
-  document.getElementById("hexValue").value=color;
-  document.getElementById("colorPreview").style.background=color;
-}
-
-function convertUnit(){
-  const x=parseFloat(document.getElementById("unitValue").value);
-  const type=document.getElementById("unitType").value;
-  if(!Number.isFinite(x)){document.getElementById("unitResult").textContent="Enter a valid number.";return;}
-  const formulas={
-    "km-mi":x=>x*0.621371,
-    "mi-km":x=>x/0.621371,
-    "kg-lb":x=>x*2.20462,
-    "lb-kg":x=>x/2.20462,
-    "cm-in":x=>x/2.54,
-    "in-cm":x=>x*2.54,
-    "c-f":x=>x*9/5+32,
-    "f-c":x=>(x-32)*5/9,
-    "mb-kb":x=>x*1024,
-    "kb-mb":x=>x/1024
-  };
-  document.getElementById("unitResult").textContent="Result: "+Number(formulas[type](x).toFixed(6));
-}
-
-async function checkGrammar(){
-  const text=document.getElementById("grammarText").value.trim();
-  const out=document.getElementById("grammarResult");
-  if(!text){out.textContent="Please enter some English text.";return;}
-  out.textContent="Checking...";
-  try{
-    const response=await fetch("https://api.languagetool.org/v2/check",{
-      method:"POST",
-      headers:{"Content-Type":"application/x-www-form-urlencoded"},
-      body:"language=en-US&text="+encodeURIComponent(text)
-    });
-    if(!response.ok) throw new Error("Service unavailable");
-    const data=await response.json();
-    if(!data.matches.length){out.textContent="No grammar or spelling issues found.";return;}
-    out.textContent="";
-    data.matches.slice(0,10).forEach((m,i)=>{
-      const p=document.createElement("p");
-      p.textContent=(i+1)+". "+m.message+
-        (m.replacements&&m.replacements.length?" Suggested: "+m.replacements.slice(0,3).map(r=>r.value).join(", "):"");
-      out.appendChild(p);
-    });
-  }catch(e){out.textContent="Grammar service unavailable. Check your internet connection and try again.";}
-}
-
-function downloadCode(){
-  const lang=document.getElementById("language").value;
-  const extensions={python:"py",javascript:"js",java:"java",c:"c",cpp:"cpp",php:"php"};
-  const blob=new Blob([document.getElementById("codeInput").value],{type:"text/plain"});
-  downloadBlob(blob,"shadowx-code."+extensions[lang]);
-}
-
-async function runCode(){
-  const lang=document.getElementById("language").value;
-  const code=document.getElementById("codeInput").value;
-  const out=document.getElementById("codeResult");
-  const versions={python:"3.10.0",javascript:"18.15.0",java:"15.0.2",c:"10.2.0",cpp:"10.2.0",php:"8.2.3"};
-  out.textContent="Running code... Please wait.";
-  try{
-    const response=await fetch("https://emkc.org/api/v2/piston/execute",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({language:lang,version:versions[lang],files:[{content:code}]})
-    });
-    if(!response.ok) throw new Error("Execution service unavailable");
-    const data=await response.json();
-    out.textContent=(data.run&&data.run.output)||"No output.";
-  }catch(e){
-    out.textContent="Could not run code. The online execution service may be unavailable. You can still download your code.";
-  }
-}
-</script>
-</body>
-</html>
+<section class="tool" data-name="chmod permission calculator">
+<h2>10. Chmod Permission Calculator</h2>
+<p>Choose read, write and execute permissions.</p>
+<div id="chmodRows"></div>
+<button onclick="calcChmod()">Calculate chmod</button>
+<div class="out" id="chmodOut"></div>
+</section>
