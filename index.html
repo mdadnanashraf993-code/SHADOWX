@@ -1,222 +1,586 @@
-﻿<input id="folderFiles" type="file" multiple webkitdirectory directory>
-<button onclick="makeFileList()">Create file list</button>
-<button onclick="downloadText('folderListOut','file-list.txt')">Download list</button>
-<div class="out" id="folderListOut"></div>
-</section><section class="tool" data-name="text binary converter">
-<h2>7. Text to Binary Converter</h2>
-<textarea id="binaryInput" rows="3" placeholder="Enter text or binary"></textarea>
-<div class="row">
-<button onclick="toBinary()">Text → Binary</button>
-<button onclick="fromBinary()">Binary → Text</button>
-</div>
-<div class="out" id="binaryOut"></div>
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadowx tool</title>
+<meta name="description" content="Shadowx tool - Free online tools for text, files, coding and website development.">
+<style>
+:root {
+  --bg: #09000f;
+  --card: #170b22;
+  --purple: #a020f0;
+  --light: #d8a4ff;
+  --white: #f7efff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, sans-serif;
+}
+header {
+  text-align: center;
+  padding: 25px 15px;
+  background: #10051a;
+  border-bottom: 1px solid #512078;
+  box-shadow: 0 0 20px #6b21a855;
+}
+header h1 {
+  color: var(--light);
+  font-size: 30px;
+  text-shadow: 0 0 12px var(--purple);
+  margin: 0;
+}
+header p { color: #c9b3d8; }
+.hero { text-align: center; padding: 30px 15px; }
+.hero h2 { font-size: 27px; }
+.hero p { color: #c9b3d8; }
+#search {
+  width: min(500px, 95%);
+  padding: 13px;
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  background: #12091b;
+  color: white;
+}
+main { max-width: 1250px; margin: auto; padding: 20px; }
+.tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.tool-card {
+  background: linear-gradient(145deg, #1a0d27, #100817);
+  border: 1px solid #482060;
+  border-radius: 15px;
+  padding: 18px;
+  box-shadow: 0 0 12px #7e22ce20;
+}
+.tool-card h3 { color: var(--light); margin-top: 0; }
+.tool-card p { color: #c6b4d2; font-size: 13px; }
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #55306c;
+  border-radius: 7px;
+  background: #0a0610;
+  color: white;
+  font: 14px Arial, sans-serif;
+}
+textarea { min-height: 90px; resize: vertical; }
+button {
+  border: 0;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #7024a5, #a020f0);
+  color: white;
+  padding: 10px 13px;
+  margin: 5px 3px 5px 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover { filter: brightness(1.2); }
+.output {
+  overflow-wrap: anywhere;
+  color: #e8cfff;
+  font-size: 13px;
+  white-space: pre-wrap;
+  margin-top: 10px;
+}
+a { color: var(--light); }
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 25px 12px;
+  border-top: 1px solid #8b2be2;
+  color: var(--light);
+  text-shadow: 0 0 10px var(--purple);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+@media(max-width:500px) {
+  header h1 { font-size: 25px; }
+  .hero h2 { font-size: 23px; }
+  main { padding: 12px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Shadowx tool</h1>
+  <p>Free Online Tools for Everyone</p>
+</header>
+
+<section class="hero">
+  <h2>Welcome to Shadowx tool</h2>
+  <p>Simple tools for files, text, coding and websites.</p>
+  <input id="search" placeholder="Search tools..." oninput="searchTools()">
 </section>
 
-<section class="tool" data-name="hexadecimal converter">
-<h2>8. Hexadecimal Converter</h2>
-<input id="numInput" value="255">
-<select id="numBase">
-<option value="10">Decimal</option>
-<option value="2">Binary</option>
-<option value="16">Hexadecimal</option>
+<main>
+<div class="tools" id="tools">
+
+<section class="tool-card">
+<h3>1. CSV Cleaner</h3>
+<input type="file" id="csvFile" accept=".csv,.txt">
+<button onclick="cleanCSV()">Clean CSV</button>
+<div id="csvOut" class="output"></div>
+</section>
+
+<section class="tool-card">
+<h3>2. File Diff Checker</h3>
+<textarea id="diffA" placeholder="Paste first text"></textarea>
+<textarea id="diffB" placeholder="Paste second text"></textarea>
+<button onclick="diffText()">Compare Files</button>
+<div id="diffOut" class="output"></div>
+</section>
+
+<section class="tool-card">
+<h3>3. File Hash Calculator</h3>
+<input type="file" id="hashFile">
+<button onclick="hashFileNow()">Calculate SHA-256</button>
+<div id="hashOut" class="output"></div>
+</section>
+
+<section class="tool-card">
+<h3>4. JSON Validator</h3>
+<textarea id="jsonIn" placeholder='{"name":"Shadowx"}'></textarea>
+<button onclick="validateJSON()">Validate JSON</button>
+<div id="jsonOut" class="output"></div>
+</section>
+
+<section class="tool-card">
+<h3>5. Bulk File Renamer</h3>
+<input type="file" id="renameFiles" multiple>
+<input id="renamePrefix" placeholder="New filename prefix">
+<button onclick="renamePreview()">Preview Names</button>
+<div id="renameOut" class="output"></div>
+<p>Preview only: files on your computer are not renamed automatically.</p>
+</section>
+
+<section class="tool-card">
+<h3>6. Folder File List Maker</h3>
+<input type="file" id="folderFiles" webkitdirectory multiple>
+<button onclick="makeFileList()">Create File List</button>
+<textarea id="folderOut" placeholder="File list"></textarea>
+<button onclick="downloadText('folderOut','file-list.txt')">Download List</button>
+</section>
+
+<section class="tool-card">
+<h3>7. Text to Binary Converter</h3>
+<textarea id="binaryIn" placeholder="Enter text"></textarea>
+<button onclick="toBinary()">Convert to Binary</button>
+<textarea id="binaryOut" placeholder="Binary result"></textarea>
+</section>
+
+<section class="tool-card">
+<h3>8. Hexadecimal Converter</h3>
+<textarea id="hexIn" placeholder="Text to convert to HEX"></textarea>
+<button onclick="toHex()">Text → HEX</button>
+<textarea id="hexOut" placeholder="HEX result"></textarea>
+<input id="hexBack" placeholder="HEX bytes, e.g. 48 69">
+<button onclick="fromHex()">HEX → Text</button>
+<div id="hexTextOut" class="output"></div>
+</section>
+
+<section class="tool-card">
+<h3>9. Cron Expression Checker</h3>
+<input id="cronIn" placeholder="Example: */5 * * * *">
+<button onclick="checkCron()">Check Expression</button>
+<div id="cronOut" class="output"></div>
+<p>Format: minute hour day month weekday. Basic check only.</p>
+</section>
+
+<section class="tool-card">
+<h3>10. Chmod Permission Calculator</h3>
+<label>Owner
+<select id="owner">
+<option value="7">Read + Write + Execute</option>
+<option value="6">Read + Write</option>
+<option value="5">Read + Execute</option>
+<option value="4">Read only</option>
+<option value="0">None</option>
 </select>
-<button onclick="convertNumber()">Convert</button>
-<div class="out" id="numOut"></div>
+</label>
+<label>Group
+<select id="group">
+<option value="5">Read + Execute</option>
+<option value="7">Read + Write + Execute</option>
+<option value="6">Read + Write</option>
+<option value="4">Read only</option>
+<option value="0">None</option>
+</select>
+</label>
+<label>Others
+<select id="others">
+<option value="5">Read + Execute</option>
+<option value="4">Read only</option>
+<option value="7">Read + Write + Execute</option>
+<option value="6">Read + Write</option>
+<option value="0">None</option>
+</select>
+</label>
+<button onclick="chmodCalc()">Calculate</button>
+<div id="chmodOut" class="output"></div>
 </section>
 
-<section class="tool" data-name="cron expression tester">
-<h2>9. Cron Expression Tester</h2>
-<input id="cronInput" value="*/5 * * * *">
-<button onclick="explainCron()">Explain</button>
-<div class="out" id="cronOut"></div>
+<section class="tool-card">
+<h3>11. Regex Match Extractor</h3>
+<input id="regexIn" placeholder="Regex pattern, e.g. \d+">
+<textarea id="regexText" placeholder="Text to search"></textarea>
+<button onclick="runRegex()">Find Matches</button>
+<div id="regexOut" class="output"></div>
 </section>
 
-<section class="tool" data-name="chmod permission calculator">
-<h2>10. Chmod Permission Calculator</h2>
-<div id="chmodRows">
-<label><input type="checkbox" id="ur" checked> Owner Read</label>
-<label><input type="checkbox" id="uw" checked> Owner Write</label>
-<label><input type="checkbox" id="ux"> Owner Execute</label>
-<label><input type="checkbox" id="gr" checked> Group Read</label>
-<label><input type="checkbox" id="gw"> Group Write</label>
-<label><input type="checkbox" id="gx"> Group Execute</label>
-<label><input type="checkbox" id="or" checked> Others Read</label>
-<label><input type="checkbox" id="ow"> Others Write</label>
-<label><input type="checkbox" id="ox"> Others Execute</label>
-</div>
-<button onclick="calcChmod()">Calculate</button>
-<div class="out" id="chmodOut"></div>
-</section>
-
-<section class="tool" data-name="regex match extractor">
-<h2>11. Regex Match Extractor</h2>
-<textarea id="regexText" rows="3" placeholder="Enter text"></textarea>
-<input id="regexPattern" placeholder="Pattern, e.g. \d+">
-<input id="regexFlags" value="g" placeholder="Flags: g, i, m">
-<button onclick="extractRegex()">Extract Matches</button>
-<div class="out" id="regexOut"></div>
-</section>
-
-<section class="tool" data-name="sql query formatter">
-<h2>12. SQL Query Formatter</h2>
-<textarea id="sqlInput" rows="5" placeholder="Enter SQL query"></textarea>
+<section class="tool-card">
+<h3>12. SQL Query Formatter</h3>
+<textarea id="sqlIn" placeholder="Paste SQL query"></textarea>
 <button onclick="formatSQL()">Format SQL</button>
-<div class="out" id="sqlOut"></div>
+<textarea id="sqlOut" placeholder="Formatted SQL"></textarea>
 </section>
 
-<section class="tool" data-name="sql table generator">
-<h2>13. SQL Table Generator</h2>
-<textarea id="sqlCSV" rows="4" placeholder="CSV with header row"></textarea>
-<input id="sqlTable" value="my_table" placeholder="Table name">
-<button onclick="generateSQL()">Generate SQL</button>
-<div class="out" id="sqlGenOut"></div>
+<section class="tool-card">
+<h3>13. SQL Table Generator</h3>
+<input id="tableName" placeholder="Table name">
+<textarea id="tableCols" placeholder="id INT PRIMARY KEY
+name VARCHAR(100)
+email VARCHAR(200)"></textarea>
+<button onclick="makeSQLTable()">Generate SQL</button>
+<textarea id="tableOut" placeholder="CREATE TABLE output"></textarea>
 </section>
 
-<section class="tool" data-name="html to jsx converter">
-<h2>14. HTML to JSX Converter</h2>
-<textarea id="htmlInput" rows="4" placeholder="Paste HTML"></textarea>
-<button onclick="convertJSX()">Convert to JSX</button>
-<div class="out" id="jsxOut"></div>
+<section class="tool-card">
+<h3>14. HTML to JSX Converter</h3>
+<textarea id="jsxIn" placeholder='<div class="box">Hello</div>'></textarea>
+<button onclick="toJSX()">Convert to JSX</button>
+<textarea id="jsxOut" placeholder="JSX result"></textarea>
 </section>
 
-<section class="tool" data-name="svg optimizer">
-<h2>15. SVG Optimizer</h2>
-<textarea id="svgInput" rows="4" placeholder="Paste SVG source"></textarea>
+<section class="tool-card">
+<h3>15. SVG Optimizer</h3>
+<textarea id="svgIn" placeholder="Paste SVG code"></textarea>
 <button onclick="optimizeSVG()">Optimize SVG</button>
-<div class="out" id="svgOut"></div>
-</section><!-- PART 3: EXTRA TOOLS + FOOTER + JAVASCRIPT -->
+<textarea id="svgOut" placeholder="Optimized SVG"></textarea>
+</section>
 
-<div class="tool-card">
-  <h2>16. WebP Converter</h2>
-  <input type="file" id="webpFile" accept="image/*">
-  <button onclick="convertWebP()">Convert to WebP</button>
-  <a id="webpDownload" download="converted.webp"></a>
-  <p id="webpStatus"></p>
+<section class="tool-card">
+<h3>16. Image to WebP Converter</h3>
+<input type="file" id="webpFile" accept="image/*">
+<button onclick="convertWebP()">Convert to WebP</button>
+<a id="webpDownload" style="display:none" download="converted.webp">Download WebP</a>
+<div id="webpStatus" class="output"></div>
+</section>
+
+<section class="tool-card">
+<h3>17. Subtitle Synchronizer</h3>
+<textarea id="subtitleInput" placeholder="Paste SRT subtitles"></textarea>
+<input id="subtitleOffset" type="number" value="1" step="0.1" placeholder="Offset in seconds">
+<button onclick="syncSubtitles()">Adjust Timing</button>
+<textarea id="subtitleOutput" placeholder="Adjusted subtitles"></textarea>
+</section>
+
+<section class="tool-card">
+<h3>18. VTT to SRT Converter</h3>
+<textarea id="vttInput" placeholder="Paste WEBVTT content"></textarea>
+<button onclick="convertVTT()">Convert to SRT</button>
+<textarea id="srtOutput" placeholder="SRT output"></textarea>
+</section>
+
+<section class="tool-card">
+<h3>19. Robots.txt Generator</h3>
+<input id="robotsSite" placeholder="https://example.com">
+<button onclick="makeRobots()">Generate robots.txt</button>
+<textarea id="robotsOutput" placeholder="robots.txt output"></textarea>
+</section>
+
+<section class="tool-card">
+<h3>20. Sitemap XML Generator</h3>
+<textarea id="sitemapUrls" placeholder="Enter one full website URL per line"></textarea>
+<button onclick="makeSitemap()">Generate Sitemap</button>
+<textarea id="sitemapOutput" placeholder="Sitemap XML output"></textarea>
+</section>
+
 </div>
+</main>
 
-<div class="tool-card">
-  <h2>17. Subtitle Synchronizer</h2>
-  <textarea id="subtitleInput" placeholder="Paste subtitle text here"></textarea>
-  <input id="subtitleOffset" type="number" value="1" step="0.1" placeholder="Offset in seconds">
-  <button onclick="syncSubtitles()">Synchronize</button>
-  <textarea id="subtitleOutput" placeholder="Updated subtitles"></textarea>
-</div>
-
-<div class="tool-card">
-  <h2>18. VTT to SRT Converter</h2>
-  <textarea id="vttInput" placeholder="Paste WEBVTT content here"></textarea>
-  <button onclick="convertVTT()">Convert to SRT</button>
-  <textarea id="srtOutput" placeholder="SRT output"></textarea>
-</div>
-
-<div class="tool-card">
-  <h2>19. Robots.txt Generator</h2>
-  <input id="robotsSite" placeholder="Website URL">
-  <button onclick="makeRobots()">Generate robots.txt</button>
-  <textarea id="robotsOutput"></textarea>
-</div>
-
-<div class="tool-card">
-  <h2>20. Sitemap XML Generator</h2>
-  <textarea id="sitemapUrls" placeholder="Enter one website URL per line"></textarea>
-  <button onclick="makeSitemap()">Generate Sitemap</button>
-  <textarea id="sitemapOutput"></textarea>
-</div>
-
-<footer>
-  <p>© 2026 Shadowx tool</p>
-  <p>Made by Adnan Ashraf</p>
-</footer>
+<footer>MADE BY - Adnan Ashraf</footer>
 
 <script>
+function el(id) {
+  return document.getElementById(id);
+}
+
+function show(id, text) {
+  el(id).textContent = text;
+}
+
+function downloadBlob(text, name, type = "text/plain") {
+  const blob = new Blob([text], {type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function downloadText(id, name) {
+  downloadBlob(el(id).value, name);
+}
+
+function searchTools() {
+  const q = el("search").value.toLowerCase();
+  document.querySelectorAll(".tool-card").forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(q) ? "" : "none";
+  });
+}
+
+function cleanCSV() {
+  const file = el("csvFile").files[0];
+  if (!file) return alert("Choose a CSV file first.");
+  const reader = new FileReader();
+  reader.onload = () => {
+    const lines = reader.result.split(/\r?\n/).filter(line => line.trim());
+    const unique = [...new Set(lines)];
+    downloadBlob(unique.join("\n"), "cleaned.csv", "text/csv");
+    show("csvOut", `${lines.length - unique.length} duplicate rows removed. Download started.`);
+  };
+  reader.readAsText(file);
+}
+
+function diffText() {
+  const a = el("diffA").value.split("\n");
+  const b = el("diffB").value.split("\n");
+  const output = [];
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    if (a[i] !== b[i]) {
+      output.push(`Line ${i + 1}:\nA: ${a[i] ?? "(missing)"}\nB: ${b[i] ?? "(missing)"}`);
+    }
+  }
+  show("diffOut", output.length ? output.join("\n\n") : "Texts are identical.");
+}
+
+async function hashFileNow() {
+  const file = el("hashFile").files[0];
+  if (!file) return alert("Choose a file first.");
+  try {
+    if (!crypto.subtle) throw new Error("Open this website using its HTTPS link to calculate SHA-256.");
+    const buffer = await file.arrayBuffer();
+    const hash = await crypto.subtle.digest("SHA-256", buffer);
+    show("hashOut", Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, "0")).join(""));
+  } catch (e) {
+    show("hashOut", e.message);
+  }
+}
+
+function validateJSON() {
+  try {
+    JSON.parse(el("jsonIn").value);
+    show("jsonOut", "Valid JSON ✓");
+  } catch (e) {
+    show("jsonOut", "Invalid JSON: " + e.message);
+  }
+}
+
+function renamePreview() {
+  const files = [...el("renameFiles").files];
+  const prefix = el("renamePrefix").value.trim() || "file";
+  if (!files.length) return show("renameOut", "Choose files first.");
+  show("renameOut", files.map((f, i) => {
+    const dot = f.name.lastIndexOf(".");
+    const ext = dot > 0 ? f.name.slice(dot) : "";
+    return `${f.name} → ${prefix}_${i + 1}${ext}`;
+  }).join("\n"));
+}
+
+function makeFileList() {
+  const files = [...el("folderFiles").files];
+  el("folderOut").value = files.map(f => f.webkitRelativePath || f.name).join("\n");
+}
+
+function toBinary() {
+  el("binaryOut").value = Array.from(new TextEncoder().encode(el("binaryIn").value))
+    .map(b => b.toString(2).padStart(8, "0")).join(" ");
+}
+
+function toHex() {
+  el("hexOut").value = Array.from(new TextEncoder().encode(el("hexIn").value))
+    .map(b => b.toString(16).padStart(2, "0")).join(" ").toUpperCase();
+}
+
+function fromHex() {
+  try {
+    const raw = el("hexBack").value.trim().replace(/^0x/i, "").replace(/0x/gi, "");
+    const compact = raw.replace(/[\s,:-]/g, "");
+    if (!compact || !/^[0-9a-f]+$/i.test(compact) || compact.length % 2) {
+      throw new Error("Enter valid HEX byte pairs, e.g. 48 69");
+    }
+    const bytes = new Uint8Array(compact.match(/.{2}/g).map(x => parseInt(x, 16)));
+    show("hexTextOut", new TextDecoder().decode(bytes));
+  } catch (e) {
+    show("hexTextOut", e.message);
+  }
+}
+
+function checkCron() {
+  const fields = el("cronIn").value.trim().split(/\s+/);
+  if (fields.length !== 5) {
+    return show("cronOut", "Enter 5 fields: minute hour day month weekday.");
+  }
+  const valid = fields.every(x => /^[0-9*/?,\-]+$/.test(x));
+  show("cronOut", valid
+    ? "Basic format looks valid. This is not a full cron schedule validator."
+    : "Invalid characters found.");
+}
+
+function chmodCalc() {
+  show("chmodOut", "chmod " + el("owner").value + el("group").value + el("others").value);
+}
+
+function runRegex() {
+  try {
+    const pattern = new RegExp(el("regexIn").value, "g");
+    const matches = [...el("regexText").value.matchAll(pattern)].map(m => m[0]);
+    show("regexOut", matches.length ? matches.join("\n") : "No matches found.");
+  } catch (e) {
+    show("regexOut", "Regex error: " + e.message);
+  }
+}
+
+function formatSQL() {
+  let sql = el("sqlIn").value.trim().replace(/\s+/g, " ");
+  sql = sql.replace(/\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|HAVING|LIMIT|LEFT JOIN|RIGHT JOIN|INNER JOIN|JOIN|ON|VALUES|SET|INSERT INTO|UPDATE|DELETE FROM|AND|OR)\b/gi, "\n$1");
+  el("sqlOut").value = sql.trim();
+}
+
+function makeSQLTable() {
+  const name = el("tableName").value.trim();
+  const columns = el("tableCols").value.trim();
+  if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) {
+    return alert("Enter a valid table name.");
+  }
+  if (!columns) return alert("Enter column definitions.");
+  el("tableOut").value = `CREATE TABLE ${name} (\n  ${columns.split("\n").filter(x => x.trim()).join(",\n  ")}\n);`;
+}
+
+function toJSX() {
+  let html = el("jsxIn").value;
+  html = html.replace(/\bclass=/g, "className=");
+  html = html.replace(/\bfor=/g, "htmlFor=");
+  html = html.replace(/<!--([\s\S]*?)-->/g, "{/*$1*/}");
+  html = html.replace(/<br\s*>/gi, "<br />");
+  html = html.replace(/<hr\s*>/gi, "<hr />");
+  html = html.replace(/<img([^>]*?)(?<!\/)>/gi, "<img$1 />");
+  html = html.replace(/<input([^>]*?)(?<!\/)>/gi, "<input$1 />");
+  el("jsxOut").value = html;
+}
+
+function optimizeSVG() {
+  let svg = el("svgIn").value.trim();
+  if (!/<svg[\s>]/i.test(svg)) {
+    return show("svgOut", "This does not look like SVG source.");
+  }
+  svg = svg.replace(/<!--[\s\S]*?-->/g, "");
+  svg = svg.replace(/>\s+</g, "><").replace(/\s{2,}/g, " ");
+  el("svgOut").value = svg;
+}
+
 function convertWebP() {
-  const file = document.getElementById("webpFile").files[0];
+  const file = el("webpFile").files[0];
   if (!file) return alert("Choose an image first.");
-
-  const img = new Image();
   const url = URL.createObjectURL(file);
+  const img = new Image();
 
-  img.onload = function () {
+  img.onload = () => {
     const canvas = document.createElement("canvas");
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
     canvas.getContext("2d").drawImage(img, 0, 0);
-
-    canvas.toBlob(function (blob) {
-      if (!blob) return alert("Conversion failed.");
-      const link = document.getElementById("webpDownload");
-      link.href = URL.createObjectURL(blob);
-      link.textContent = "Download WebP";
-      link.style.display = "inline-block";
-      link.click();
+    canvas.toBlob(blob => {
       URL.revokeObjectURL(url);
+      if (!blob) return show("webpStatus", "Conversion failed.");
+      const link = el("webpDownload");
+      link.href = URL.createObjectURL(blob);
+      link.style.display = "inline-block";
+      link.textContent = "Download WebP";
+      link.download = "converted.webp";
+      show("webpStatus", "Conversion complete.");
     }, "image/webp");
   };
 
-  img.onerror = function () {
-    alert("Image could not be opened.");
+  img.onerror = () => {
     URL.revokeObjectURL(url);
+    show("webpStatus", "Could not open this image.");
   };
-
   img.src = url;
 }
 
 function syncSubtitles() {
-  const text = document.getElementById("subtitleInput").value;
-  const offset = Number(document.getElementById("subtitleOffset").value);
+  const text = el("subtitleInput").value;
+  const offset = Number(el("subtitleOffset").value);
+  if (!Number.isFinite(offset)) return alert("Enter a valid offset.");
+
   const output = text.replace(
-    /(\d{2}:\d{2}:\d{2}[,.]\d{3})/g,
-    time => {
-      const parts = time.replace(",", ".").split(/[:.]/).map(Number);
-      let ms = parts[0] * 3600000 + parts[1] * 60000 +
-               parts[2] * 1000 + parts[3] + offset * 1000;
+    /(\d{2}:)?(\d{2}):(\d{2})([,.])(\d{3})/g,
+    (match, hours, minutes, seconds, sep, millis) => {
+      const h = hours ? Number(hours.slice(0, 2)) : 0;
+      let ms = h * 3600000 + Number(minutes) * 60000 +
+               Number(seconds) * 1000 + Number(millis) + offset * 1000;
       ms = Math.max(0, Math.round(ms));
-      const h = String(Math.floor(ms / 3600000)).padStart(2, "0");
-      const m = String(Math.floor(ms % 3600000 / 60000)).padStart(2, "0");
-      const s = String(Math.floor(ms % 60000 / 1000)).padStart(2, "0");
-      const milli = String(ms % 1000).padStart(3, "0");
-      return `${h}:${m}:${s},${milli}`;
+      const hh = String(Math.floor(ms / 3600000)).padStart(2, "0");
+      const mm = String(Math.floor(ms % 3600000 / 60000)).padStart(2, "0");
+      const ss = String(Math.floor(ms % 60000 / 1000)).padStart(2, "0");
+      const mmm = String(ms % 1000).padStart(3, "0");
+      return `${hh}:${mm}:${ss},${mmm}`;
     }
   );
-  document.getElementById("subtitleOutput").value = output;
+  el("subtitleOutput").value = output;
 }
 
 function convertVTT() {
-  let text = document.getElementById("vttInput").value;
+  let text = el("vttInput").value.trim();
   text = text.replace(/^WEBVTT[^\n]*\n?/i, "");
   text = text.replace(/(\d{2}:\d{2}:\d{2})\.(\d{3})/g, "$1,$2");
-  text = text.replace(/(\d{2}:\d{2})\.(\d{3})/g, "00:$1,$2");
-  text = text.replace(/-->/g, "-->");
-  text = text.replace(/^\s*NOTE.*(?:\n.*)*$/gm, "");
-  document.getElementById("srtOutput").value = text.trim();
+  text = text.replace(/(?<!\d)(\d{2}:\d{2})\.(\d{3})/g, "00:$1,$2");
+  el("srtOutput").value = text.trim();
 }
 
 function makeRobots() {
-  let site = document.getElementById("robotsSite").value.trim();
-  if (!site) return alert("Enter your website URL.");
-
-  const output =
+  let site = el("robotsSite").value.trim().replace(/\/+$/, "");
+  if (!/^https?:\/\/\S+$/i.test(site)) {
+    return alert("Enter a valid website URL starting with https://");
+  }
+  el("robotsOutput").value =
 `User-agent: *
 Allow: /
 
-Sitemap: ${site.replace(/\/+$/, "")}/sitemap.xml`;
-
-  document.getElementById("robotsOutput").value = output;
+Sitemap: ${site}/sitemap.xml`;
 }
 
 function makeSitemap() {
-  const urls = document.getElementById("sitemapUrls").value
-    .split("\n")
+  const urls = el("sitemapUrls").value.split(/\r?\n/)
     .map(u => u.trim())
     .filter(u => /^https?:\/\/\S+$/i.test(u));
 
   if (!urls.length) return alert("Enter at least one valid URL.");
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(url => `  <url><loc>${url.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</loc></url>`).join("\n")}
-</urlset>`;
+  const escapeXML = s => s.replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-  document.getElementById("sitemapOutput").value = xml;
+  el("sitemapOutput").value =
+`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(url => `  <url><loc>${escapeXML(url)}</loc></url>`).join("\n")}
+</urlset>`;
 }
 </script>
+
+</body>
+</html>
