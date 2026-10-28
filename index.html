@@ -1,106 +1,9 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shadowx tool</title>
-<meta name="description" content="Free browser-based developer, file and text tools from Shadowx tool.">
-<style>
-:root{--bg:#09000f;--panel:#160b20;--panel2:#21102e;--purple:#a855f7;--purple2:#c084fc;--text:#f7f1ff;--muted:#c4b5d4;--border:#5b267e}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px Arial,sans-serif}
-header{text-align:center;padding:28px 15px;background:#12001d;border-bottom:2px solid var(--purple);box-shadow:0 0 20px #6b21a8}
-h1{margin:0;color:var(--purple2);font-size:clamp(28px,5vw,42px);text-transform:none;text-shadow:0 0 14px #9333ea}
-header p{color:var(--muted);margin-bottom:0}
-.wrap{width:min(1200px,94%);margin:22px auto}
-#search{display:block;width:100%;max-width:620px;margin:0 auto 22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px}
-.tool{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:18px;box-shadow:0 0 10px #240d35;min-width:0}
-.tool h2{font-size:20px;color:var(--purple2);margin:0 0 8px}
-.tool p{color:var(--muted);font-size:14px;line-height:1.45}
-input,textarea,select,button{font:inherit;border-radius:7px;padding:10px;width:100%;margin:6px 0;background:#0d0613;color:var(--text);border:1px solid #7133a0}
-input[type=file]{font-size:13px}
-input[type=checkbox]{width:auto}
-button{background:#7e22ce;border-color:#a855f7;font-weight:bold;cursor:pointer}
-button:hover{background:#9333ea}
-.row{display:flex;gap:8px;align-items:center}
-.row>*{flex:1;min-width:0}
-.out{margin-top:9px;padding:10px;background:#0c0611;border:1px solid #3b1b50;border-radius:7px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:24px;font-size:14px;color:#e9d5ff}
-.small{font-size:12px;color:var(--muted)}
-footer{text-align:center;padding:22px;color:var(--muted);border-top:1px solid var(--border)}
-.credit{margin:10px 0 0;color:var(--purple2);font-weight:bold;letter-spacing:1px;text-shadow:0 0 8px #9333ea}
-</style>
-</head>
-<body>
-<header>
-<h1>Shadowx tool</h1>
-<p>Useful file, text and developer tools — no AI required</p>
-</header>
-<main class="wrap">
-<input id="search" placeholder="Search tools..." oninput="searchTools()" aria-label="Search tools">
-<div class="grid" id="tools">
-
-<section class="tool" data-name="csv cleaner duplicate blank rows">
-<h2>1. CSV Cleaner</h2>
-<p>Remove duplicate rows and blank rows from a CSV file.</p>
-<input id="csvFile" type="file" accept=".csv,text/csv">
-<button onclick="cleanCSV()">Clean CSV & Download</button>
-<div class="out" id="csvOut">Choose a CSV file.</div>
-</section>
-
-<section class="tool" data-name="file diff checker compare files text">
-<h2>2. File Diff Checker</h2>
-<p>Compare two text files or paste text directly.</p>
-<input id="diffAFile" type="file">
-<input id="diffBFile" type="file">
-<textarea id="diffA" rows="3" placeholder="Or paste original text here"></textarea>
-<textarea id="diffB" rows="3" placeholder="Or paste changed text here"></textarea>
-<button onclick="compareFiles()">Compare</button>
-<div class="out" id="diffOut"></div>
-</section>
-
-<section class="tool" data-name="file hash calculator sha256">
-<h2>3. File Hash Calculator</h2>
-<p>Calculate the SHA-256 hash of a selected file in your browser.</p>
-<input id="hashFile" type="file">
-<button onclick="hashFile()">Calculate SHA-256</button>
-<div class="out" id="hashOut"></div>
-</section>
-
-<section class="tool" data-name="json schema validator">
-<h2>4. JSON Schema Validator</h2>
-<p>Paste JSON data and a JSON Schema.</p>
-<textarea id="jsonData" rows="4" placeholder='JSON data, e.g. {"name":"Ali","age":12}'></textarea>
-<textarea id="jsonSchema" rows="4" placeholder='Schema, e.g. {"type":"object","required":["name"],"properties":{"name":{"type":"string"}}}'></textarea>
-<button onclick="validateJSON()">Validate JSON</button>
-<div class="out" id="jsonOut"></div>
-</section>
-
-<section class="tool" data-name="bulk file renamer rename files">
-<h2>5. Bulk File Renamer</h2>
-<p>Select multiple files and download renamed copies.</p>
-<input id="renameFiles" type="file" multiple>
-<input id="renamePrefix" value="file" placeholder="New name prefix">
-<select id="renameOrder">
-<option value="number">prefix-1, prefix-2...</option>
-<option value="same">Keep original name (add prefix)</option>
-</select>
-<button onclick="renameFiles()">Prepare renamed downloads</button>
-<div class="out" id="renameOut"></div>
-</section>
-
-<section class="tool" data-name="folder file list maker">
-<h2>6. Folder File List Maker</h2>
-<p>Select a folder or multiple files to make a list.</p>
-<input id="folderFiles" type="file" multiple webkitdirectory directory>
+﻿<input id="folderFiles" type="file" multiple webkitdirectory directory>
 <button onclick="makeFileList()">Create file list</button>
 <button onclick="downloadText('folderListOut','file-list.txt')">Download list</button>
 <div class="out" id="folderListOut"></div>
-</section>
-
-<section class="tool" data-name="text binary converter">
+</section><section class="tool" data-name="text binary converter">
 <h2>7. Text to Binary Converter</h2>
-<p>Convert text to UTF-8 binary and binary back to text.</p>
 <textarea id="binaryInput" rows="3" placeholder="Enter text or binary"></textarea>
 <div class="row">
 <button onclick="toBinary()">Text → Binary</button>
@@ -111,12 +14,11 @@ footer{text-align:center;padding:22px;color:var(--muted);border-top:1px solid va
 
 <section class="tool" data-name="hexadecimal converter">
 <h2>8. Hexadecimal Converter</h2>
-<p>Convert a whole number between decimal, binary and hexadecimal.</p>
-<input id="numInput" type="text" value="255" placeholder="Enter number">
+<input id="numInput" value="255">
 <select id="numBase">
-<option value="10">Input is Decimal</option>
-<option value="2">Input is Binary</option>
-<option value="16">Input is Hexadecimal</option>
+<option value="10">Decimal</option>
+<option value="2">Binary</option>
+<option value="16">Hexadecimal</option>
 </select>
 <button onclick="convertNumber()">Convert</button>
 <div class="out" id="numOut"></div>
@@ -124,16 +26,197 @@ footer{text-align:center;padding:22px;color:var(--muted);border-top:1px solid va
 
 <section class="tool" data-name="cron expression tester">
 <h2>9. Cron Expression Tester</h2>
-<p>Basic 5-field cron expression explanation.</p>
-<input id="cronInput" value="*/5 * * * *" placeholder="minute hour day month weekday">
-<button onclick="explainCron()">Explain expression</button>
+<input id="cronInput" value="*/5 * * * *">
+<button onclick="explainCron()">Explain</button>
 <div class="out" id="cronOut"></div>
 </section>
 
 <section class="tool" data-name="chmod permission calculator">
 <h2>10. Chmod Permission Calculator</h2>
-<p>Choose read, write and execute permissions.</p>
-<div id="chmodRows"></div>
-<button onclick="calcChmod()">Calculate chmod</button>
+<div id="chmodRows">
+<label><input type="checkbox" id="ur" checked> Owner Read</label>
+<label><input type="checkbox" id="uw" checked> Owner Write</label>
+<label><input type="checkbox" id="ux"> Owner Execute</label>
+<label><input type="checkbox" id="gr" checked> Group Read</label>
+<label><input type="checkbox" id="gw"> Group Write</label>
+<label><input type="checkbox" id="gx"> Group Execute</label>
+<label><input type="checkbox" id="or" checked> Others Read</label>
+<label><input type="checkbox" id="ow"> Others Write</label>
+<label><input type="checkbox" id="ox"> Others Execute</label>
+</div>
+<button onclick="calcChmod()">Calculate</button>
 <div class="out" id="chmodOut"></div>
 </section>
+
+<section class="tool" data-name="regex match extractor">
+<h2>11. Regex Match Extractor</h2>
+<textarea id="regexText" rows="3" placeholder="Enter text"></textarea>
+<input id="regexPattern" placeholder="Pattern, e.g. \d+">
+<input id="regexFlags" value="g" placeholder="Flags: g, i, m">
+<button onclick="extractRegex()">Extract Matches</button>
+<div class="out" id="regexOut"></div>
+</section>
+
+<section class="tool" data-name="sql query formatter">
+<h2>12. SQL Query Formatter</h2>
+<textarea id="sqlInput" rows="5" placeholder="Enter SQL query"></textarea>
+<button onclick="formatSQL()">Format SQL</button>
+<div class="out" id="sqlOut"></div>
+</section>
+
+<section class="tool" data-name="sql table generator">
+<h2>13. SQL Table Generator</h2>
+<textarea id="sqlCSV" rows="4" placeholder="CSV with header row"></textarea>
+<input id="sqlTable" value="my_table" placeholder="Table name">
+<button onclick="generateSQL()">Generate SQL</button>
+<div class="out" id="sqlGenOut"></div>
+</section>
+
+<section class="tool" data-name="html to jsx converter">
+<h2>14. HTML to JSX Converter</h2>
+<textarea id="htmlInput" rows="4" placeholder="Paste HTML"></textarea>
+<button onclick="convertJSX()">Convert to JSX</button>
+<div class="out" id="jsxOut"></div>
+</section>
+
+<section class="tool" data-name="svg optimizer">
+<h2>15. SVG Optimizer</h2>
+<textarea id="svgInput" rows="4" placeholder="Paste SVG source"></textarea>
+<button onclick="optimizeSVG()">Optimize SVG</button>
+<div class="out" id="svgOut"></div>
+</section><!-- PART 3: EXTRA TOOLS + FOOTER + JAVASCRIPT -->
+
+<div class="tool-card">
+  <h2>16. WebP Converter</h2>
+  <input type="file" id="webpFile" accept="image/*">
+  <button onclick="convertWebP()">Convert to WebP</button>
+  <a id="webpDownload" download="converted.webp"></a>
+  <p id="webpStatus"></p>
+</div>
+
+<div class="tool-card">
+  <h2>17. Subtitle Synchronizer</h2>
+  <textarea id="subtitleInput" placeholder="Paste subtitle text here"></textarea>
+  <input id="subtitleOffset" type="number" value="1" step="0.1" placeholder="Offset in seconds">
+  <button onclick="syncSubtitles()">Synchronize</button>
+  <textarea id="subtitleOutput" placeholder="Updated subtitles"></textarea>
+</div>
+
+<div class="tool-card">
+  <h2>18. VTT to SRT Converter</h2>
+  <textarea id="vttInput" placeholder="Paste WEBVTT content here"></textarea>
+  <button onclick="convertVTT()">Convert to SRT</button>
+  <textarea id="srtOutput" placeholder="SRT output"></textarea>
+</div>
+
+<div class="tool-card">
+  <h2>19. Robots.txt Generator</h2>
+  <input id="robotsSite" placeholder="Website URL">
+  <button onclick="makeRobots()">Generate robots.txt</button>
+  <textarea id="robotsOutput"></textarea>
+</div>
+
+<div class="tool-card">
+  <h2>20. Sitemap XML Generator</h2>
+  <textarea id="sitemapUrls" placeholder="Enter one website URL per line"></textarea>
+  <button onclick="makeSitemap()">Generate Sitemap</button>
+  <textarea id="sitemapOutput"></textarea>
+</div>
+
+<footer>
+  <p>© 2026 Shadowx tool</p>
+  <p>Made by Adnan Ashraf</p>
+</footer>
+
+<script>
+function convertWebP() {
+  const file = document.getElementById("webpFile").files[0];
+  if (!file) return alert("Choose an image first.");
+
+  const img = new Image();
+  const url = URL.createObjectURL(file);
+
+  img.onload = function () {
+    const canvas = document.createElement("canvas");
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    canvas.getContext("2d").drawImage(img, 0, 0);
+
+    canvas.toBlob(function (blob) {
+      if (!blob) return alert("Conversion failed.");
+      const link = document.getElementById("webpDownload");
+      link.href = URL.createObjectURL(blob);
+      link.textContent = "Download WebP";
+      link.style.display = "inline-block";
+      link.click();
+      URL.revokeObjectURL(url);
+    }, "image/webp");
+  };
+
+  img.onerror = function () {
+    alert("Image could not be opened.");
+    URL.revokeObjectURL(url);
+  };
+
+  img.src = url;
+}
+
+function syncSubtitles() {
+  const text = document.getElementById("subtitleInput").value;
+  const offset = Number(document.getElementById("subtitleOffset").value);
+  const output = text.replace(
+    /(\d{2}:\d{2}:\d{2}[,.]\d{3})/g,
+    time => {
+      const parts = time.replace(",", ".").split(/[:.]/).map(Number);
+      let ms = parts[0] * 3600000 + parts[1] * 60000 +
+               parts[2] * 1000 + parts[3] + offset * 1000;
+      ms = Math.max(0, Math.round(ms));
+      const h = String(Math.floor(ms / 3600000)).padStart(2, "0");
+      const m = String(Math.floor(ms % 3600000 / 60000)).padStart(2, "0");
+      const s = String(Math.floor(ms % 60000 / 1000)).padStart(2, "0");
+      const milli = String(ms % 1000).padStart(3, "0");
+      return `${h}:${m}:${s},${milli}`;
+    }
+  );
+  document.getElementById("subtitleOutput").value = output;
+}
+
+function convertVTT() {
+  let text = document.getElementById("vttInput").value;
+  text = text.replace(/^WEBVTT[^\n]*\n?/i, "");
+  text = text.replace(/(\d{2}:\d{2}:\d{2})\.(\d{3})/g, "$1,$2");
+  text = text.replace(/(\d{2}:\d{2})\.(\d{3})/g, "00:$1,$2");
+  text = text.replace(/-->/g, "-->");
+  text = text.replace(/^\s*NOTE.*(?:\n.*)*$/gm, "");
+  document.getElementById("srtOutput").value = text.trim();
+}
+
+function makeRobots() {
+  let site = document.getElementById("robotsSite").value.trim();
+  if (!site) return alert("Enter your website URL.");
+
+  const output =
+`User-agent: *
+Allow: /
+
+Sitemap: ${site.replace(/\/+$/, "")}/sitemap.xml`;
+
+  document.getElementById("robotsOutput").value = output;
+}
+
+function makeSitemap() {
+  const urls = document.getElementById("sitemapUrls").value
+    .split("\n")
+    .map(u => u.trim())
+    .filter(u => /^https?:\/\/\S+$/i.test(u));
+
+  if (!urls.length) return alert("Enter at least one valid URL.");
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(url => `  <url><loc>${url.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}</loc></url>`).join("\n")}
+</urlset>`;
+
+  document.getElementById("sitemapOutput").value = xml;
+}
+</script>
