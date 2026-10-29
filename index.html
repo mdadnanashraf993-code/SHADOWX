@@ -59,6 +59,88 @@
 }
 * { box-sizing: border-box; }
 body {
+  
+<header class="site-header">
+  <a class="brand" href="./">
+    <span class="brand-logo">AS</span>
+    <span class="brand-name">SHADOWX TOOL</span>
+  </a>
+</header>
+
+<section class="welcome">
+  <h1>Welcome to Shadowx tool</h1>
+  <p>Simple tools for files, text, coding and websites.</p>
+
+  <input
+    id="toolSearch"
+    type="search"
+    placeholder="Search tools..."
+    aria-label="Search tools"
+  >
+</section>
+
+<style>
+.site-header {
+  padding: 18px 24px;
+  background: #09000f;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #b44dff;
+  border-radius: 50%;
+  color: #d6a0ff;
+  box-shadow: 0 0 12px #a020f0;
+}
+
+.brand-name {
+  letter-spacing: 1px;
+}
+
+.welcome {
+  text-align: center;
+  padding: 35px 16px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.welcome h1 {
+  color: #c45bff;
+  text-shadow: 0 0 12px #a020f0;
+}
+
+.welcome p {
+  color: #cccccc;
+}
+
+#toolSearch {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 500px;
+  padding: 14px;
+  margin-top: 15px;
+  border: 1px solid #a020f0;
+  border-radius: 10px;
+  background: #160d20;
+  color: white;
+  font-size: 16px;
+}
+</style>
+
   margin: 0;
   background: var(--bg);
   color: var(--white);
