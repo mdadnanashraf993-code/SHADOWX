@@ -4,607 +4,357 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#09000f">
 <title>SHADOWX TOOL</title>
+
 <style>
-:root {
-  --bg: #09000f;
-  --panel: #150b20;
-  --purple: #b44dff;
-  --text: #ffffff;
-  --muted: #c7b8d4;
-  --border: #48205f;
-}
-* { box-sizing: border-box; }
-body {
+* {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
 }
-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 18px 6%;
-  border-bottom: 1px solid var(--border);
-  background: #100719;
-}
-.logo {
-  width: 45px;
-  height: 45px;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  border: 2px solid var(--purple);
-  border-radius: 12px;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  text-shadow: 0 0 10px var(--purple);
-  box-shadow: 0 0 14px #a020f055;
-}
-.brand {
-  color: white;
-  font-size: 21px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-.brand span { color: var(--purple); }
-.hero {
-  text-align: center;
-  padding: 48px 18px 30px;
-}
-.hero h1 {
-  color: var(--purple);
-  font-size: clamp(28px, 5vw, 42px);
-  text-shadow: 0 0 15px #a020f088;
-  margin: 0 0 12px;
-}
-.hero p {
-  color: var(--muted);
-  line-height: 1.6;
-  margin: 0 auto 24px;
-}
-#search {
-  width: min(100%, 520px);
-  padding: 14px 16px;
-  border: 1px solid var(--purple);
-  border-radius: 10px;
-  outline: none;
-  background: #13091c;
-  color: white;
-  font-size: 16px;
-}
-#search:focus { box-shadow: 0 0 12px #b44dff55; }
-main {
-  width: min(1100px, 92%);
-  margin: 10px auto 55px;
-}
-.section-title {
-  margin: 15px 0 22px;
-  font-size: 23px;
-}
-.section-title span { color: var(--purple); }
-.tools {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-  gap: 17px;
-}
-.tool {
-  padding: 21px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: linear-gradient(145deg, #190d24, #0e0714);
-  transition: .2s;
-}
-.tool:hover {
-  border-color: var(--purple);
-  transform: translateY(-3px);
-  box-shadow: 0 0 18px #a020f022;
-}
-.tool h3 { margin: 0 0 10px; font-size: 17px; }
-.tool p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-  min-height: 40px;
-}
-.tool button, .tool label {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 10px 13px;
-  border: 1px solid var(--purple);
-  border-radius: 8px;
-  background: #281137;
-  color: white;
-  cursor: pointer;
-  font-size: 13px;
-}
-.tool button:hover, .tool label:hover { background: #542076; }
-.tool input[type="file"] { display: none; }
-.tool textarea, .tool input[type="text"], .tool input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
+
+body {
   background: #09000f;
   color: white;
-  margin: 5px 0;
+  font-family: Arial, sans-serif;
 }
-.output {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  color: #dcb8ff;
-  font-size: 12px;
+
+header {
+  text-align: center;
+  padding: 35px 15px;
+  border-bottom: 1px solid #6820a0;
+}
+
+.logo {
+  width: 55px;
+  height: 55px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #b44dff;
+  border-radius: 15px;
+  color: #b44dff;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 0 15px #a020f0;
+  margin-bottom: 12px;
+}
+
+header h1 {
+  color: #b44dff;
+  font-size: 34px;
+  text-shadow: 0 0 15px #a020f0;
+}
+
+header p {
+  color: #c9b5d8;
   margin-top: 12px;
 }
-footer {
-  text-align: center;
-  border-top: 1px solid var(--border);
-  padding: 24px 12px;
-  color: var(--muted);
+
+.search-box {
+  display: block;
+  width: 85%;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 15px;
+  border: 1px solid #a020f0;
+  border-radius: 30px;
+  background: #160b20;
+  color: white;
+  outline: none;
+  font-size: 16px;
 }
-footer strong { color: var(--purple); }
-[hidden] { display: none !important; }
+
+.search-box:focus {
+  box-shadow: 0 0 15px #a020f0;
+}
+
+.tools {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.tool-card {
+  background: #160b20;
+  border: 1px solid #552078;
+  padding: 23px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  border-color: #c45aff;
+  box-shadow: 0 0 18px #7020a0;
+}
+
+.tool-card h3 {
+  color: #c45aff;
+  margin-bottom: 12px;
+}
+
+.tool-card p {
+  color: #c9b5d8;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.tool-card button {
+  margin-top: 18px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 20px;
+  background: #8b2be2;
+  color: white;
+  cursor: pointer;
+}
+
+.tool-card button:hover {
+  background: #b44dff;
+}
+
+.empty {
+  text-align: center;
+  color: #c45aff;
+  margin: 30px;
+  display: none;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 30px 15px;
+  text-align: center;
+  border-top: 1px solid #6820a0;
+  background: #0d0314;
+}
+
+footer p {
+  color: white;
+  margin-bottom: 17px;
+  font-weight: bold;
+}
+
+.instagram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #c45aff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 17px;
+  transition: 0.3s;
+}
+
+.instagram-link:hover {
+  color: white;
+  text-shadow: 0 0 12px #b44dff;
+  transform: scale(1.05);
+}
+
+.instagram-link svg {
+  width: 26px;
+  height: 26px;
+}
+
+footer small {
+  display: block;
+  color: #806c90;
+  margin-top: 18px;
+}
 </style>
 </head>
+
 <body>
 
 <header>
   <div class="logo">AS</div>
-  <div class="brand">SHADOWX <span>TOOL</span></div>
+  <h1>SHADOWX TOOL</h1>
+  <p>Welcome to Shadowx tool</p>
+  <p>Simple tools for files, text, coding and websites.</p>
 </header>
 
-<section class="hero">
-  <h1>Welcome to Shadowx tool</h1>
-  <p>Simple tools for files, text, coding and websites.</p>
-  <input id="search" type="text" placeholder="Search tools..." oninput="searchTools()">
-</section>
+<input
+  type="text"
+  class="search-box"
+  id="search"
+  placeholder="Search your tools..."
+>
 
-<main>
-  <h2 class="section-title">Our <span>20 Tools</span></h2>
-  <div class="tools" id="tools">
+<div class="tools" id="tools">
 
-    <section class="tool" data-name="CSV Cleaner">
-      <h3>1. CSV Cleaner</h3>
-      <p>CSV file se duplicate aur blank rows hatayein.</p>
-      <label for="csvFile">Choose CSV</label>
-      <input id="csvFile" type="file" accept=".csv,text/csv" onchange="cleanCSV(this)">
-      <div class="output" id="csvOut"></div>
-    </section>
-
-    <section class="tool" data-name="File Diff Checker">
-      <h3>2. File Diff Checker</h3>
-      <p>Do text files compare karein.</p>
-      <textarea id="diffA" placeholder="First text"></textarea>
-      <textarea id="diffB" placeholder="Second text"></textarea>
-      <button onclick="compareText()">Compare</button>
-      <div class="output" id="diffOut"></div>
-    </section>
-
-    <section class="tool" data-name="File Hash Calculator">
-      <h3>3. File Hash Calculator</h3>
-      <p>File ka SHA-256 hash nikalein.</p>
-      <label for="hashFile">Choose File</label>
-      <input id="hashFile" type="file" onchange="hashFile(this)">
-      <div class="output" id="hashOut"></div>
-    </section>
-
-    <section class="tool" data-name="JSON Validator">
-      <h3>4. JSON Validator</h3>
-      <p>JSON syntax check aur format karein.</p>
-      <textarea id="jsonIn" placeholder='{"name":"Adnan"}'></textarea>
-      <button onclick="validateJSON()">Validate</button>
-      <div class="output" id="jsonOut"></div>
-    </section>
-
-    <section class="tool" data-name="Bulk File Renamer">
-      <h3>5. Bulk File Renamer</h3>
-      <p>Files ke liye naye naam banayein.</p>
-      <label for="renameFiles">Choose Files</label>
-      <input id="renameFiles" type="file" multiple onchange="renamePreview(this)">
-      <input id="renamePrefix" type="text" placeholder="New name prefix">
-      <button onclick="renamePreview(document.getElementById('renameFiles'))">Preview Names</button>
-      <div class="output" id="renameOut"></div>
-    </section>
-
-    <section class="tool" data-name="Folder File List Maker">
-      <h3>6. Folder File List Maker</h3>
-      <p>Selected files ki list banayein.</p>
-      <label for="listFiles">Choose Files</label>
-      <input id="listFiles" type="file" multiple onchange="makeFileList(this)">
-      <button onclick="downloadText('file-list.txt',document.getElementById('listOut').textContent)">Download List</button>
-      <div class="output" id="listOut"></div>
-    </section>
-
-    <section class="tool" data-name="Text to Binary Converter">
-      <h3>7. Text to Binary Converter</h3>
-      <p>Text ko binary mein convert karein.</p>
-      <textarea id="binIn" placeholder="Enter text"></textarea>
-      <button onclick="toBinary()">Convert</button>
-      <div class="output" id="binOut"></div>
-    </section>
-
-    <section class="tool" data-name="Hexadecimal Converter">
-      <h3>8. Hexadecimal Converter</h3>
-      <p>Text aur hexadecimal convert karein.</p>
-      <textarea id="hexIn" placeholder="Enter text or hex, e.g. 4869"></textarea>
-      <button onclick="textToHex()">Text → Hex</button>
-      <button onclick="hexToText()">Hex → Text</button>
-      <div class="output" id="hexOut"></div>
-    </section>
-
-    <section class="tool" data-name="Cron Expression Checker">
-      <h3>9. Cron Expression Checker</h3>
-      <p>Basic cron expression format check karein.</p>
-      <input id="cronIn" type="text" placeholder="*/5 * * * *">
-      <button onclick="checkCron()">Check</button>
-      <div class="output" id="cronOut"></div>
-    </section>
-
-    <section class="tool" data-name="Chmod Permission Calculator">
-      <h3>10. Chmod Permission Calculator</h3>
-      <p>Read, write, execute permissions ka number.</p>
-      <label><input type="checkbox" id="ur" checked> Owner Read</label>
-      <label><input type="checkbox" id="uw" checked> Owner Write</label>
-      <label><input type="checkbox" id="ux" checked> Owner Execute</label>
-      <label><input type="checkbox" id="gr" checked> Group Read</label>
-      <label><input type="checkbox" id="gw"> Group Write</label>
-      <label><input type="checkbox" id="gx"> Group Execute</label>
-      <label><input type="checkbox" id="or" checked> Other Read</label>
-      <label><input type="checkbox" id="ow"> Other Write</label>
-      <label><input type="checkbox" id="ox"> Other Execute</label>
-      <button onclick="chmodCalc()">Calculate</button>
-      <div class="output" id="chmodOut">755</div>
-    </section>
-
-    <section class="tool" data-name="Regex Match Extractor">
-      <h3>11. Regex Match Extractor</h3>
-      <p>Text mein pattern matches dhoondein.</p>
-      <input id="regexIn" type="text" placeholder="Regex, e.g. \d+">
-      <textarea id="regexText" placeholder="Text to search"></textarea>
-      <button onclick="extractRegex()">Extract</button>
-      <div class="output" id="regexOut"></div>
-    </section>
-
-    <section class="tool" data-name="SQL Query Formatter">
-      <h3>12. SQL Query Formatter</h3>
-      <p>SQL query ko readable format mein karein.</p>
-      <textarea id="sqlIn" placeholder="SELECT * FROM users WHERE id=1"></textarea>
-      <button onclick="formatSQL()">Format</button>
-      <div class="output" id="sqlOut"></div>
-    </section>
-
-    <section class="tool" data-name="SQL Table Generator">
-      <h3>13. SQL Table Generator</h3>
-      <p>Table name aur columns se CREATE TABLE query banayein.</p>
-      <input id="tableName" type="text" placeholder="Table name">
-      <textarea id="tableCols" placeholder="id INT PRIMARY KEY&#10;name VARCHAR(100)"></textarea>
-      <button onclick="makeSQLTable()">Generate</button>
-      <div class="output" id="tableOut"></div>
-    </section>
-
-    <section class="tool" data-name="HTML to JSX Converter">
-      <h3>14. HTML to JSX Converter</h3>
-      <p>Common HTML attributes ko JSX mein convert karein.</p>
-      <textarea id="jsxIn" placeholder='<div class="box">Hello</div>'></textarea>
-      <button onclick="convertJSX()">Convert</button>
-      <div class="output" id="jsxOut"></div>
-    </section>
-
-    <section class="tool" data-name="SVG Optimizer">
-      <h3>15. SVG Optimizer</h3>
-      <p>SVG se comments aur extra whitespace hatayein.</p>
-      <textarea id="svgIn" placeholder="<svg>...</svg>"></textarea>
-      <button onclick="optimizeSVG()">Optimize</button>
-      <div class="output" id="svgOut"></div>
-    </section>
-
-    <section class="tool" data-name="Image to WebP Converter">
-      <h3>16. Image to WebP Converter</h3>
-      <p>Image ko WebP format mein download karein.</p>
-      <label for="webpFile">Choose Image</label>
-      <input id="webpFile" type="file" accept="image/*" onchange="convertWebP(this)">
-      <div class="output" id="webpOut"></div>
-    </section>
-
-    <section class="tool" data-name="Subtitle Synchronizer">
-      <h3>17. Subtitle Synchronizer</h3>
-      <p>SRT subtitles ko seconds se aage ya peeche karein.</p>
-      <label for="srtFile">Choose SRT</label>
-      <input id="srtFile" type="file" accept=".srt,.txt" onchange="loadSubtitle(this,'srtIn')">
-      <input id="srtOffset" type="number" value="0" step="0.1" placeholder="Offset seconds (+/-)">
-      <textarea id="srtIn" placeholder="Paste SRT subtitles"></textarea>
-      <button onclick="syncSRT()">Synchronize</button>
-      <div class="output" id="srtOut"></div>
-    </section>
-
-    <section class="tool" data-name="VTT to SRT Converter">
-      <h3>18. VTT to SRT Converter</h3>
-      <p>WebVTT subtitles ko SRT mein badlein.</p>
-      <label for="vttFile">Choose VTT</label>
-      <input id="vttFile" type="file" accept=".vtt,.txt" onchange="loadSubtitle(this,'vttIn')">
-      <textarea id="vttIn" placeholder="Paste WEBVTT content"></textarea>
-      <button onclick="convertVTT()">Convert</button>
-      <div class="output" id="vttOut"></div>
-    </section>
-
-    <section class="tool" data-name="Robots.txt Generator">
-      <h3>19. Robots.txt Generator</h3>
-      <p>Website ke liye basic robots.txt banayein.</p>
-      <input id="robotsSite" type="text" placeholder="https://example.com">
-      <button onclick="makeRobots()">Generate</button>
-      <div class="output" id="robotsOut"></div>
-    </section>
-
-    <section class="tool" data-name="Sitemap XML Generator">
-      <h3>20. Sitemap XML Generator</h3>
-      <p>URLs ki list se basic sitemap XML banayein.</p>
-      <textarea id="sitemapUrls" placeholder="https://example.com/&#10;https://example.com/about"></textarea>
-      <button onclick="makeSitemap()">Generate</button>
-      <div class="output" id="sitemapOut"></div>
-    </section>
-
+  <div class="tool-card">
+    <h3>1. CSV Cleaner</h3>
+    <p>Remove duplicate and blank rows from CSV files.</p>
+    <button onclick="alert('CSV Cleaner')">Open Tool</button>
   </div>
-  <p id="noResults" hidden>No tools found. Try another search.</p>
-</main>
 
-<footer>MADE BY - <strong>Adnan Ashraf</strong></footer>
+  <div class="tool-card">
+    <h3>2. File Diff Checker</h3>
+    <p>Compare two files and find their differences.</p>
+    <button onclick="alert('File Diff Checker')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>3. File Hash Calculator</h3>
+    <p>Calculate SHA-256 file hashes.</p>
+    <button onclick="alert('File Hash Calculator')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>4. JSON Validator</h3>
+    <p>Check whether JSON data is valid.</p>
+    <button onclick="alert('JSON Validator')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>5. Bulk File Renamer</h3>
+    <p>Rename multiple files together.</p>
+    <button onclick="alert('Bulk File Renamer')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>6. Folder File List Maker</h3>
+    <p>Create a list of files inside a folder.</p>
+    <button onclick="alert('Folder File List Maker')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>7. Text to Binary Converter</h3>
+    <p>Convert normal text into binary code.</p>
+    <button onclick="alert('Text to Binary Converter')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>8. Hexadecimal Converter</h3>
+    <p>Convert numbers and text into hexadecimal.</p>
+    <button onclick="alert('Hexadecimal Converter')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>9. Cron Expression Checker</h3>
+    <p>Check cron expressions.</p>
+    <button onclick="alert('Cron Expression Checker')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>10. Chmod Permission Calculator</h3>
+    <p>Calculate Linux file permissions.</p>
+    <button onclick="alert('Chmod Permission Calculator')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>11. Regex Match Extractor</h3>
+    <p>Find matching text using regular expressions.</p>
+    <button onclick="alert('Regex Match Extractor')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>12. SQL Query Formatter</h3>
+    <p>Format SQL queries for better readability.</p>
+    <button onclick="alert('SQL Query Formatter')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>13. SQL Table Generator</h3>
+    <p>Generate SQL table creation statements.</p>
+    <button onclick="alert('SQL Table Generator')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>14. HTML to JSX Converter</h3>
+    <p>Convert HTML code into JSX format.</p>
+    <button onclick="alert('HTML to JSX Converter')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>15. SVG Optimizer</h3>
+    <p>Optimize SVG code.</p>
+    <button onclick="alert('SVG Optimizer')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>16. Image to WebP Converter</h3>
+    <p>Convert images into WebP format.</p>
+    <button onclick="alert('Image to WebP Converter')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>17. Subtitle Synchronizer</h3>
+    <p>Adjust subtitle timing.</p>
+    <button onclick="alert('Subtitle Synchronizer')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>18. VTT to SRT Converter</h3>
+    <p>Convert VTT subtitles into SRT format.</p>
+    <button onclick="alert('VTT to SRT Converter')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>19. Robots.txt Generator</h3>
+    <p>Create robots.txt files for websites.</p>
+    <button onclick="alert('Robots.txt Generator')">Open Tool</button>
+  </div>
+
+  <div class="tool-card">
+    <h3>20. Sitemap XML Generator</h3>
+    <p>Create sitemap XML files for websites.</p>
+    <button onclick="alert('Sitemap XML Generator')">Open Tool</button>
+  </div>
+
+</div>
+
+<div class="empty" id="empty">
+  No tools found!
+</div>
+
+<footer>
+
+  <p>MADE BY - Adnan Ashraf</p>
+
+  <a
+    class="instagram-link"
+    href="https://www.instagram.com/adnanx249/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Visit my Instagram profile"
+  >
+
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-3a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/>
+    </svg>
+
+    <span>@adnanx249</span>
+
+  </a>
+
+  <small>© 2026 SHADOWX TOOL. All Rights Reserved.</small>
+
+</footer>
 
 <script>
-const $ = id => document.getElementById(id);
-function show(id, text) { $(id).textContent = text; }
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".tool-card");
+const empty = document.getElementById("empty");
 
-function searchTools() {
-  const q = $('search').value.toLowerCase().trim();
-  let count = 0;
-  document.querySelectorAll('.tool').forEach(tool => {
-    const match = (tool.dataset.name + ' ' + tool.textContent).toLowerCase().includes(q);
-    tool.hidden = !match;
-    if (match) count++;
+search.addEventListener("input", function() {
+  const value = this.value.toLowerCase();
+  let visible = 0;
+
+  cards.forEach(function(card) {
+    const match = card.innerText.toLowerCase().includes(value);
+    card.style.display = match ? "block" : "none";
+
+    if (match) visible++;
   });
-  $('noResults').hidden = count !== 0;
-}
 
-function downloadText(name, text, type='text/plain;charset=utf-8') {
-  const blob = new Blob([text], {type});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = name;
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-
-function readFile(file, callback) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => callback(String(reader.result));
-  reader.onerror = () => alert('File read nahi ho saki.');
-  reader.readAsText(file);
-}
-
-function cleanCSV(input) {
-  const file = input.files[0];
-  if (!file) return;
-  readFile(file, text => {
-    const lines = text.replace(/^\uFEFF/, '').split(/\r?\n/);
-    const seen = new Set();
-    const clean = lines.filter(line => {
-      if (!line.trim()) return false;
-      if (seen.has(line)) return false;
-      seen.add(line); return true;
-    });
-    const result = clean.join('\r\n');
-    show('csvOut', 'Cleaned rows: ' + clean.length);
-    downloadText('cleaned.csv', result, 'text/csv;charset=utf-8');
-  });
-}
-
-function compareText() {
-  const a = $('diffA').value.split(/\r?\n/);
-  const b = $('diffB').value.split(/\r?\n/);
-  const out = [];
-  const max = Math.max(a.length, b.length);
-  for (let i = 0; i < max; i++) {
-    if (a[i] !== b[i]) {
-      out.push('Line ' + (i+1) + ':');
-      out.push('  First: ' + (a[i] ?? '[missing]'));
-      out.push('  Second: ' + (b[i] ?? '[missing]'));
-    }
-  }
-  show('diffOut', out.length ? out.join('\n') : 'Both texts are identical.');
-}
-
-async function hashFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  if (!crypto.subtle) {
-    show('hashOut', 'SHA-256 ke liye secure browser context zaroori hai.');
-    return;
-  }
-  try {
-    const hash = await crypto.subtle.digest('SHA-256', await file.arrayBuffer());
-    show('hashOut', [...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join(''));
-  } catch(e) { show('hashOut', 'Hash calculate nahi ho saka.'); }
-}
-
-function validateJSON() {
-  try {
-    show('jsonOut', JSON.stringify(JSON.parse($('jsonIn').value), null, 2));
-  } catch(e) { show('jsonOut', 'Invalid JSON: ' + e.message); }
-}
-
-function renamePreview(input) {
-  const files = [...(input.files || [])];
-  const prefix = $('renamePrefix').value.trim() || 'file';
-  show('renameOut', files.length ? files.map((f,i) =>
-    f.name + '  →  ' + prefix + '_' + (i+1) + (f.name.includes('.') ? '.' + f.name.split('.').pop() : '')
-  ).join('\n') : 'Pehle files select karein.');
-}
-
-function makeFileList(input) {
-  const files = [...input.files];
-  show('listOut', files.map(f=>f.name).join('\n') || 'No files selected.');
-}
-
-function toBinary() {
-  const text = $('binIn').value;
-  show('binOut', [...new TextEncoder().encode(text)].map(b=>b.toString(2).padStart(8,'0')).join(' '));
-}
-
-function textToHex() {
-  show('hexOut', [...new TextEncoder().encode($('hexIn').value)].map(b=>b.toString(16).padStart(2,'0')).join(' '));
-}
-function hexToText() {
-  const value = $('hexIn').value.trim();
-  const parts = value ? value.split(/[\s,]+/) : [];
-  if (parts.some(x=>! /^[0-9a-fA-F]{1,2}$/.test(x))) {
-    show('hexOut', 'Hex ko spaces ke saath likhein, jaise: 48 69'); return;
-  }
-  try {
-    show('hexOut', new TextDecoder('utf-8',{fatal:true}).decode(new Uint8Array(parts.map(x=>parseInt(x,16)))));
-  } catch(e) { show('hexOut', 'Invalid UTF-8 hex data.'); }
-}
-
-function checkCron() {
-  const parts = $('cronIn').value.trim().split(/\s+/);
-  show('cronOut', parts.length === 5
-    ? '5 fields detected. Basic format theek hai; values ki full validation nahi hui.'
-    : 'Standard cron expression mein 5 fields honi chahiye.');
-}
-
-function chmodCalc() {
-  const val = (a,b,c) => ($(a).checked?4:0)+($(b).checked?2:0)+($(c).checked?1:0);
-  const result = ''+val('ur','uw','ux')+val('gr','gw','gx')+val('or','ow','ox');
-  show('chmodOut', 'chmod ' + result + '\nOctal permission: ' + result);
-}
-
-function extractRegex() {
-  try {
-    const re = new RegExp($('regexIn').value, 'g');
-    const matches = $('regexText').value.match(re);
-    show('regexOut', matches ? matches.join('\n') : 'No matches found.');
-  } catch(e) { show('regexOut', 'Regex error: ' + e.message); }
-}
-
-function formatSQL() {
-  let sql = $('sqlIn').value.trim().replace(/\s+/g,' ');
-  sql = sql.replace(/\b(FROM|WHERE|GROUP BY|ORDER BY|HAVING|LIMIT|VALUES|SET|LEFT JOIN|RIGHT JOIN|INNER JOIN|JOIN|ON|AND|OR)\b/gi, '\n$1');
-  sql = sql.replace(/\b(SELECT|INSERT INTO|UPDATE|DELETE FROM|CREATE TABLE)\b/gi, '\n$1');
-  show('sqlOut', sql.trim());
-}
-
-function makeSQLTable() {
-  const name = $('tableName').value.trim();
-  const cols = $('tableCols').value.trim();
-  if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name) || !cols) {
-    show('tableOut', 'Valid table name aur columns enter karein.'); return;
-  }
-  show('tableOut', 'CREATE TABLE ' + name + ' (\n  ' + cols.split(/\r?\n/).filter(Boolean).join(',\n  ') + '\n);');
-}
-
-function convertJSX() {
-  let html = $('jsxIn').value;
-  html = html.replace(/\bclass=/g, 'className=')
-             .replace(/\bfor=/g, 'htmlFor=')
-             .replace(/\btabindex=/gi, 'tabIndex=')
-             .replace(/\breadonly\b/gi, 'readOnly')
-             .replace(/\bmaxlength=/gi, 'maxLength=')
-             .replace(/\bautocomplete=/gi, 'autoComplete=');
-  show('jsxOut', html);
-}
-
-function optimizeSVG() {
-  let svg = $('svgIn').value;
-  svg = svg.replace(/<!--[\s\S]*?-->/g, '')
-           .replace(/>\s+</g, '><')
-           .replace(/\s{2,}/g, ' ')
-           .trim();
-  show('svgOut', svg || 'SVG paste karein.');
-  if (svg) downloadText('optimized.svg', svg, 'image/svg+xml');
-}
-
-function convertWebP(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const img = new Image();
-  const url = URL.createObjectURL(file);
-  img.onload = () => {
-    try {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-      canvas.getContext('2d').drawImage(img,0,0);
-      canvas.toBlob(blob => {
-        if (!blob) { show('webpOut','WebP conversion failed.'); URL.revokeObjectURL(url); return; }
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = file.name.replace(/\.[^.]+$/, '') + '.webp';
-        link.click();
-        setTimeout(()=>URL.revokeObjectURL(link.href),1000);
-        show('webpOut','Conversion complete.');
-        URL.revokeObjectURL(url);
-      }, 'image/webp', 0.9);
-    } catch(e) { show('webpOut','Image convert nahi ho saki.'); URL.revokeObjectURL(url); }
-  };
-  img.onerror = () => { show('webpOut','Image open nahi hui.'); URL.revokeObjectURL(url); };
-  img.src = url;
-}
-
-function loadSubtitle(input, target) {
-  readFile(input.files[0], text => $(target).value = text);
-}
-function shiftTime(time, offset) {
-  const m = time.match(/^(\d{2}):(\d{2}):(\d{2})[,.](\d{3})$/);
-  if (!m) return time;
-  let ms = ((+m[1]*3600 + +m[2]*60 + +m[3])*1000 + +m[4]) + offset*1000;
-  ms = Math.max(0, ms);
-  const h = Math.floor(ms/3600000); ms %= 3600000;
-  const min = Math.floor(ms/60000); ms %= 60000;
-  const sec = Math.floor(ms/1000); const milli = Math.floor(ms%1000);
-  return [h,min,sec].map(n=>String(n).padStart(2,'0')).join(':') + ',' + String(milli).padStart(3,'0');
-}
-function syncSRT() {
-  const offset = Number($('srtOffset').value);
-  const result = $('srtIn').value.replace(/(\d{2}:\d{2}:\d{2}[,.]\d{3})/g, t=>shiftTime(t,offset));
-  show('srtOut',result);
-  downloadText('synchronized.srt',result);
-}
-function convertVTT() {
-  let text = $('vttIn').value.replace(/^\uFEFF?WEBVTT[^\r\n]*\r?\n/i,'');
-  text = text.replace(/^\s*NOTE[^\r\n]*(?:\r?\n(?!\s*$).*)*/gm,'');
-  text = text.replace(/(\d{2}:\d{2}:\d{2})\.(\d{3})/g,'$1,$2');
-  text = text.replace(/(\d{2}:\d{2})\.(\d{3})/g,'00:$1,$2');
-  text = text.split(/\r?\n/).filter(line=>!line.trim().startsWith('STYLE') && !line.trim().startsWith('REGION')).join('\n').trim();
-  let n = 0;
-  text = text.split(/\n\s*\n/).map(block=>{
-    const lines = block.split('\n');
-    if (lines.some(l=>l.includes('-->'))) { n++; return n+'\n'+lines.join('\n'); }
-    return block;
-  }).join('\n\n');
-  show('vttOut',text || 'VTT content paste karein.');
-  if (text) downloadText('converted.srt',text);
-}
-function makeRobots() {
-  const site = $('robotsSite').value.trim().replace(/\/+$/,'');
-  if (!/^https?:\/\/.+/i.test(site)) { show('robotsOut','Valid website URL enter karein.'); return; }
-  const text = 'User-agent: *\nAllow: /\n\nSitemap: ' + site + '/sitemap.xml\n';
-  show('robotsOut',text);
-  downloadText('robots.txt',text);
-}
-function makeSitemap() {
-  const urls = $('sitemapUrls').value.split(/\r?\n/).map(u=>u.trim()).filter(Boolean);
-  if (!urls.length || urls.some(u=>!/^https?:\/\/.+/i.test(u))) {
-    show('sitemapOut','Har line par valid http:// ya https:// URL likhein.'); return;
-  }
-  const escapeXML = s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
-  const xml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-    urls.map(u=>'  <url><loc>'+escapeXML(u)+'</loc></url>').join('\n') +
-    '\n</urlset>';
-  show('sitemapOut',xml);
-  downloadText('sitemap.xml',xml,'application/xml;charset=utf-8');
-}
+  empty.style.display = visible === 0 ? "block" : "none";
+});
 </script>
+
 </body>
 </html>
