@@ -4,36 +4,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SHADOWX TOOL - Free online tools for files, text, coding and websites.">
-<meta name="robots" content="index, follow">
+<meta name="description" content="SHADOWX TOOL provides free online tools for files, text, coding and websites.">
 <title>SHADOWX TOOL - Free Online Tools</title>
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 body{background:#09000f;color:white;font-family:Arial,sans-serif;line-height:1.6}
-header{padding:25px 15px;text-align:center;background:#130020;border-bottom:1px solid #8b2be2}
-.logo{font-size:30px;color:#c56aff;font-weight:bold;text-shadow:0 0 15px #a020f0}
-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;padding:15px}
+header,footer{background:#130020;text-align:center;padding:22px;border-bottom:1px solid #7431a0}
+.logo{font-size:30px;font-weight:bold;color:#c56aff;text-shadow:0 0 15px #a020f0}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin-top:15px}
 a{color:#d6a5ff;text-decoration:none}
 a:hover{color:white}
-main{max-width:1000px;margin:auto;padding:25px 16px}
-h1,h2{color:#c56aff;margin-bottom:15px}
+main{max-width:1100px;margin:auto;padding:20px}
 .hero{text-align:center;padding:35px 10px}
-.hero p{color:#ddd}
-input,textarea{width:100%;padding:13px;margin:15px 0;background:#1b1024;border:1px solid #8133b5;border-radius:8px;color:white}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card{background:#170d20;padding:20px;border:1px solid #51206d;border-radius:12px}
-.card h3{color:#d6a5ff}
-button{background:#922bd1;color:white;padding:11px 20px;border:0;border-radius:7px;cursor:pointer;margin-top:10px}
+h1,h2,h3{color:#c56aff;margin-bottom:12px}
+input,textarea,select{width:100%;padding:12px;margin:8px 0;background:#1b1024;color:white;border:1px solid #8036ad;border-radius:7px}
+button{background:#922bd1;color:white;border:0;border-radius:7px;padding:10px 16px;cursor:pointer;margin:5px 0}
 button:hover{background:#b44dff}
-.page{display:none;background:#170d20;padding:25px;border-radius:12px;margin-top:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#170d20;padding:18px;border:1px solid #51206d;border-radius:12px}
+.card h3{font-size:18px}
+.page{display:none;background:#170d20;padding:22px;border-radius:12px}
 .page.active{display:block}
-footer{text-align:center;padding:30px 15px;margin-top:40px;background:#130020;border-top:1px solid #51206d}
-footer p{margin:8px}
-footer a{margin:5px}
+.toolbox{margin-top:20px;background:#170d20;border:1px solid #8036ad;border-radius:12px;padding:20px}
+.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#0b0610;padding:12px;margin-top:12px;border-radius:7px;min-height:35px}
+footer{margin-top:35px;border-top:1px solid #7431a0;border-bottom:0}
+footer p{margin:9px}
+.small{color:#c9b8d5;font-size:13px}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -49,90 +47,64 @@ footer a{margin:5px}
 </header>
 
 <main>
-
 <section id="home" class="page active">
 <div class="hero">
 <h1>Welcome to SHADOWX TOOL</h1>
 <p>Simple tools for files, text, coding and websites.</p>
 </div>
+<input id="search" placeholder="Search tools..." oninput="searchTools()">
+<div class="grid" id="tools"></div>
 
-<input type="search" id="search" placeholder="Search your tools..." oninput="searchTools()">
-
-<div class="grid" id="tools">
-<div class="card"><h3>CSV Cleaner</h3><p>Clean CSV data.</p></div>
-<div class="card"><h3>File Diff Checker</h3><p>Compare two files.</p></div>
-<div class="card"><h3>File Hash Calculator</h3><p>Calculate file hashes.</p></div>
-<div class="card"><h3>JSON Validator</h3><p>Validate JSON data.</p></div>
-<div class="card"><h3>Bulk File Renamer</h3><p>Prepare file rename lists.</p></div>
-<div class="card"><h3>Folder File List Maker</h3><p>Create folder file lists.</p></div>
-<div class="card"><h3>Text to Binary Converter</h3><p>Convert text into binary.</p></div>
-<div class="card"><h3>Hexadecimal Converter</h3><p>Convert text and hexadecimal.</p></div>
-<div class="card"><h3>Cron Expression Checker</h3><p>Check cron expressions.</p></div>
-<div class="card"><h3>Chmod Permission Calculator</h3><p>Calculate file permissions.</p></div>
-<div class="card"><h3>Regex Match Extractor</h3><p>Extract regex matches.</p></div>
-<div class="card"><h3>SQL Query Formatter</h3><p>Format SQL queries.</p></div>
-<div class="card"><h3>SQL Table Generator</h3><p>Generate SQL tables.</p></div>
-<div class="card"><h3>HTML to JSX Converter</h3><p>Convert HTML into JSX.</p></div>
-<div class="card"><h3>SVG Optimizer</h3><p>Optimize SVG code.</p></div>
-<div class="card"><h3>Image to WebP Converter</h3><p>Convert images to WebP.</p></div>
-<div class="card"><h3>Subtitle Synchronizer</h3><p>Adjust subtitle timing.</p></div>
-<div class="card"><h3>VTT to SRT Converter</h3><p>Convert subtitle formats.</p></div>
-<div class="card"><h3>Robots.txt Generator</h3><p>Create robots.txt files.</p></div>
-<div class="card"><h3>Sitemap XML Generator</h3><p>Create sitemap XML.</p></div>
+<div class="toolbox" id="workspace" style="display:none">
+<h2 id="toolTitle">Tool</h2>
+<div id="toolInputs"></div>
+<div id="toolButtons"></div>
+<div class="output" id="result" aria-live="polite"></div>
+<button onclick="closeTool()">Close Tool</button>
 </div>
 </section>
 
 <section id="about" class="page">
 <h1>About Us</h1>
-<p>Welcome to SHADOWX TOOL.</p>
-<p>SHADOWX TOOL is an online platform that provides simple and useful tools for files, text, programming and websites.</p>
-<p>Our goal is to make everyday digital tasks easier and faster.</p>
-<p>We aim to improve our tools and provide a simple user experience.</p>
+<p>Welcome to SHADOWX TOOL, an online platform offering useful tools for files, text, programming and websites.</p>
+<p>Our goal is to make everyday digital tasks easier with simple browser-based tools.</p>
 </section>
 
 <section id="contact" class="page">
 <h1>Contact Us</h1>
-<p>If you have questions, suggestions or feedback about SHADOWX TOOL, you can contact us through our Instagram profile.</p>
-<p>Instagram: <a href="https://www.instagram.com/adnanx249/" target="_blank" rel="noopener">@adnanx249</a></p>
-<p>For support, please include the name of the tool and a description of the issue.</p>
+<p>For questions, feedback or suggestions, contact us through Instagram.</p>
+<p><a href="https://www.instagram.com/adnanx249/" target="_blank" rel="noopener">Instagram: @adnanx249</a></p>
 </section>
 
 <section id="privacy" class="page">
 <h1>Privacy Policy</h1>
 <p>Last updated: October 31, 2026</p>
-<h3>1. Information We Collect</h3>
-<p>SHADOWX TOOL does not intentionally ask visitors to submit personal information through its basic tools.</p>
-<h3>2. Files and Data</h3>
-<p>Some tools process data in your browser. Do not upload or enter sensitive information unless you understand how the tool works.</p>
-<h3>3. Cookies and Advertising</h3>
-<p>Third-party services, such as advertising providers, may use cookies or similar technologies if enabled on this website.</p>
-<h3>4. Third-Party Services</h3>
-<p>External websites and services have their own privacy policies. We are not responsible for their practices.</p>
-<h3>5. Changes</h3>
-<p>This Privacy Policy may be updated when website features or services change.</p>
-<h3>6. Contact</h3>
+<h3>Information</h3>
+<p>Our tools are designed to process input in your browser wherever possible. Do not enter confidential information into any online tool unless you understand its operation.</p>
+<h3>Files</h3>
+<p>File processing tools may read files selected by you. Browser-based processing does not automatically mean data is sent to our servers.</p>
+<h3>Cookies and advertising</h3>
+<p>If advertising or analytics services are added, those providers may use cookies or similar technologies. Their own privacy policies also apply.</p>
+<h3>External links</h3>
+<p>We are not responsible for the privacy practices of external websites.</p>
+<h3>Contact</h3>
 <p>For privacy questions, contact us through our Instagram profile.</p>
 </section>
 
 <section id="terms" class="page">
 <h1>Terms & Conditions</h1>
 <p>Last updated: October 31, 2026</p>
-<h3>1. Acceptance</h3>
-<p>By using SHADOWX TOOL, you agree to these terms.</p>
-<h3>2. Website Use</h3>
-<p>You agree to use this website only for lawful purposes.</p>
-<h3>3. No Guarantee</h3>
-<p>Tools are provided for convenience. We do not guarantee that every result will be error-free or suitable for every purpose.</p>
-<h3>4. User Responsibility</h3>
-<p>You are responsible for checking the results before using them.</p>
-<h3>5. Intellectual Property</h3>
-<p>Website branding and original content may not be copied or reused without permission.</p>
-<h3>6. Changes</h3>
-<p>We may update these terms when necessary.</p>
-<h3>7. Contact</h3>
-<p>Questions can be sent through our Instagram profile.</p>
+<h3>1. Use of website</h3>
+<p>Use SHADOWX TOOL only for lawful purposes.</p>
+<h3>2. Accuracy</h3>
+<p>Tools are provided as-is. Always check results before relying on them.</p>
+<h3>3. User responsibility</h3>
+<p>You are responsible for the files and information you choose to process.</p>
+<h3>4. Availability</h3>
+<p>Tools may change, be updated or become temporarily unavailable.</p>
+<h3>5. Contact</h3>
+<p>For questions, contact us through Instagram.</p>
 </section>
-
 </main>
 
 <footer>
@@ -148,21 +120,263 @@ footer a{margin:5px}
 </footer>
 
 <script>
-function showPage(id){
-document.querySelectorAll('.page').forEach(function(page){
-page.classList.remove('active');
+const toolNames=[
+"CSV Cleaner","File Diff Checker","File Hash Calculator","JSON Validator",
+"Bulk File Renamer","Folder File List Maker","Text to Binary Converter",
+"Hexadecimal Converter","Cron Expression Checker","Chmod Permission Calculator",
+"Regex Match Extractor","SQL Query Formatter","SQL Table Generator",
+"HTML to JSX Converter","SVG Optimizer","Image to WebP Converter",
+"Subtitle Synchronizer","VTT to SRT Converter","Robots.txt Generator",
+"Sitemap XML Generator"
+];
+
+const descriptions=[
+"Remove duplicate and blank CSV rows","Compare two text files",
+"Calculate SHA-256 hash","Validate JSON data","Prepare bulk rename plan",
+"Create a list of files in a folder","Convert text to binary",
+"Convert text and hexadecimal","Check basic cron syntax",
+"Calculate Linux file permissions","Extract regex matches",
+"Format SQL queries","Generate SQL table statements",
+"Convert basic HTML to JSX","Remove comments and extra SVG whitespace",
+"Convert images to WebP","Shift subtitle timestamps","Convert VTT subtitles to SRT",
+"Generate robots.txt","Generate sitemap XML"
+];
+
+const toolGrid=document.getElementById("tools");
+toolNames.forEach((name,i)=>{
+let card=document.createElement("div");
+card.className="card";
+card.innerHTML="<h3>"+name+"</h3><p>"+descriptions[i]+"</p><button type='button'>Open Tool</button>";
+card.querySelector("button").onclick=()=>openTool(i);
+toolGrid.appendChild(card);
 });
-document.getElementById(id).classList.add('active');
+
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+closeTool();
 window.scrollTo(0,0);
 }
-
 function searchTools(){
-let value=document.getElementById('search').value.toLowerCase();
-document.querySelectorAll('#tools .card').forEach(function(card){
-card.style.display=card.innerText.toLowerCase().includes(value)?'block':'none';
+let q=document.getElementById("search").value.toLowerCase();
+document.querySelectorAll("#tools .card").forEach(card=>{
+card.style.display=card.innerText.toLowerCase().includes(q)?"block":"none";
 });
 }
-</script>
+function closeTool(){
+document.getElementById("workspace").style.display="none";
+}
+function openTool(n){
+showPage("home");
+let w=document.getElementById("workspace");
+w.style.display="block";
+document.getElementById("toolTitle").textContent=toolNames[n];
+document.getElementById("toolInputs").innerHTML="";
+document.getElementById("toolButtons").innerHTML="";
+document.getElementById("result").textContent="";
+const inp=document.getElementById("toolInputs");
+const btn=document.getElementById("toolButtons");
+const result=document.getElementById("result");
+function field(id,placeholder,type="text"){
+let e=document.createElement(type==="textarea"?"textarea":"input");
+e.id=id;e.placeholder=placeholder;
+if(type==="file")e.type="file";
+if(type==="number")e.type="number";
+inp.appendChild(e);return e;
+}
+function action(label,fn){
+let b=document.createElement("button");b.textContent=label;b.onclick=fn;btn.appendChild(b);
+}
+function show(v){result.textContent=String(v);}
+function download(name,data,type="text/plain"){
+let blob=new Blob([data],{type});
+let a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();
+URL.revokeObjectURL(a.href);
+}
+function shiftTime(text,seconds){
+return text.replace(/(\d{2}):(\d{2}):(\d{2})([,.]\d{3})/g,(m,h,mi,s,ms)=>{
+let total=(+h*3600 + +mi*60 + +s + seconds)%86400;
+if(total<0)total+=86400;
+let hh=String(Math.floor(total/3600)).padStart(2,"0");
+let mm=String(Math.floor(total%3600/60)).padStart(2,"0");
+let ss=String(total%60).padStart(2,"0");
+return hh+":"+mm+":"+ss+ms;
+});
+}
 
+switch(n){
+case 0:{
+let f=field("csv","Paste CSV data","textarea");
+action("Clean CSV",()=>{
+let lines=f.value.split(/\r?\n/).filter(x=>x.trim());
+let seen=new Set(),clean=lines.filter(x=>!seen.has(x)&&(seen.add(x),true));
+let out=clean.join("\n");show(out);download("cleaned.csv",out,"text/csv");
+});break;}
+case 1:{
+let a=field("a","First text","textarea"),b=field("b","Second text","textarea");
+action("Compare",()=>{
+let x=a.value.split(/\r?\n/),y=b.value.split(/\r?\n/),out=[];
+for(let i=0;i<Math.max(x.length,y.length);i++){
+if(x[i]!==y[i])out.push("Line "+(i+1)+"\nA: "+(x[i]??"[missing]")+"\nB: "+(y[i]??"[missing]"));
+}
+show(out.length?out.join("\n\n"):"No differences found.");
+});break;}
+case 2:{
+let f=field("file","Select a file","file");
+action("Calculate SHA-256",async()=>{
+if(!f.files[0])return show("Choose a file first.");
+if(!crypto.subtle)return show("SHA-256 requires a secure browser context (HTTPS).");
+try{let hash=await crypto.subtle.digest("SHA-256",await f.files[0].arrayBuffer());
+show([...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,"0")).join(""));}catch(e){show("Could not calculate hash.");}
+});break;}
+case 3:{
+let f=field("json","Paste JSON","textarea");
+action("Validate JSON",()=>{
+try{let out=JSON.stringify(JSON.parse(f.value),null,2);show("Valid JSON\n"+out);download("formatted.json",out,"application/json");}
+catch(e){show("Invalid JSON: "+e.message);}
+});break;}
+case 4:{
+let f=field("names","One filename per line","textarea"),prefix=field("prefix","New filename prefix");
+action("Create rename plan",()=>{
+let rows=f.value.split(/\r?\n/).filter(Boolean);
+let out="Old Name,New Name\n"+rows.map((x,i)=>'"'+x.replace(/"/g,'""')+'","'+(prefix.value||"file")+"_"+(i+1)+'"').join("\n");
+show(out);download("rename-plan.csv",out,"text/csv");
+});break;}
+case 5:{
+let f=field("folder","Choose folder","file");f.setAttribute("webkitdirectory","");
+action("Create file list",()=>{
+if(!f.files.length)return show("Choose a folder first.");
+let out=[...f.files].map(x=>x.webkitRelativePath||x.name).join("\n");
+show(out);download("file-list.txt",out);
+});break;}
+case 6:{
+let f=field("text","Enter text","textarea");
+action("Convert to Binary",()=>{
+let out=[...new TextEncoder().encode(f.value)].map(b=>b.toString(2).padStart(8,"0")).join(" ");
+show(out);
+});break;}
+case 7:{
+let f=field("hex","Enter hexadecimal bytes (e.g. 48656c6c6f)");
+action("Hex to Text",()=>{
+try{let v=f.value.replace(/\s+/g,"");if(v.length%2||!/^[0-9a-f]*$/i.test(v))throw Error("Enter valid even-length hexadecimal.");
+let bytes=v.match(/.{2}/g)||[];
+show(new TextDecoder().decode(new Uint8Array(bytes.map(x=>parseInt(x,16)))));
+}catch(e){show(e.message);}
+});
+let t=field("plain","Enter text");
+action("Text to Hex",()=>show([...new TextEncoder().encode(t.value)].map(b=>b.toString(16).padStart(2,"0")).join(" ")));
+break;}
+case 8:{
+let f=field("cron","Example: */5 * * * *");
+action("Check Cron",()=>{
+let parts=f.value.trim().split(/\s+/);
+if(parts.length!==5)return show("Invalid: enter exactly 5 fields.");
+let valid=parts.every((p,i)=>p.split(",").every(item=>{
+let s=item.split("/");
+if(s.length>2)return false;
+if(s[0]==="*")return s.length===1||/^\d+$/.test(s[1])&&+s[1]>0;
+let range=s[0].split("-");
+if(range.length>2||!range.every(x=>/^\d+$/.test(x)))return false;
+let lo=+range[0],hi=+(range[1]??range[0]),max=[59,23,31,12,7][i],min=i===2||i===3?1:0;
+return lo>=min&&hi<=max&&lo<=hi&&(s.length===1||/^\d+$/.test(s[1])&&+s[1]>0);
+}));
+show(valid?"Basic 5-field cron syntax looks valid.":"Invalid field or range. Note: this is a basic syntax check.");
+});break;}
+case 9:{
+let f=field("perm","Enter permission (e.g. 755)");
+action("Calculate",()=>{
+if(!/^[0-7]{3,4}$/.test(f.value))return show("Enter 3 or 4 octal digits.");
+let v=f.value.slice(-3).split("").map(Number);
+show("Owner: "+(v[0]&4?"Read ":"")+(v[0]&2?"Write ":"")+(v[0]&1?"Execute":"")+"\nGroup: "+(v[1]&4?"Read ":"")+(v[1]&2?"Write ":"")+(v[1]&1?"Execute":"")+"\nOthers: "+(v[2]&4?"Read ":"")+(v[2]&2?"Write ":"")+(v[2]&1?"Execute":""));
+});break;}
+case 10:{
+let p=field("pattern","Regular expression"),t=field("inputText","Text to search","textarea");
+action("Extract Matches",()=>{
+try{let re=new RegExp(p.value,"g"),m=[...t.value.matchAll(re)];
+show(m.length?m.map(x=>x[0]).join("\n"):"No matches found.");
+}catch(e){show("Regex error: "+e.message);}
+});break;}
+case 11:{
+let f=field("sql","Paste SQL query","textarea");
+action("Format SQL",()=>{
+let out=f.value.replace(/\s+/g," ").trim().replace(/\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|HAVING|LIMIT|INSERT INTO|VALUES|UPDATE|SET|DELETE FROM|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|ON)\b/gi,"\n$1").trim();
+show(out);download("formatted.sql",out);
+});break;}
+case 12:{
+let name=field("table","Table name"),cols=field("columns","Columns, one per line: id INT","textarea");
+action("Generate SQL",()=>{
+if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name.value))return show("Enter a valid table name.");
+let list=cols.value.split(/\r?\n/).filter(Boolean);
+if(!list.length)return show("Enter at least one column.");
+if(!list.every(x=>/^[A-Za-z_][A-Za-z0-9_]*\s+[A-Za-z0-9_(), ]+$/.test(x)))return show("Check column definitions.");
+let out="CREATE TABLE "+name.value+" (\n  "+list.join(",\n  ")+"\n);";
+show(out);download("table.sql",out);
+});break;}
+case 13:{
+let f=field("html","Paste HTML","textarea");
+action("Convert to JSX",()=>{
+let out=f.value.replace(/class=/g,"className=").replace(/\bfor=/g,"htmlFor=").replace(/<!--([\s\S]*?)-->/g,"{/*$1*/}");
+show(out);download("converted.jsx",out);
+});break;}
+case 14:{
+let f=field("svg","Paste SVG code","textarea");
+action("Optimize SVG",()=>{
+let out=f.value.replace(/<!--[\s\S]*?-->/g,"").replace(/>\s+</g,"><").replace(/\s{2,}/g," ").trim();
+show(out);download("optimized.svg",out,"image/svg+xml");
+});break;}
+case 15:{
+let f=field("image","Choose image","file");f.accept="image/*";
+action("Convert to WebP",()=>{
+if(!f.files[0])return show("Choose an image first.");
+let img=new Image(),url=URL.createObjectURL(f.files[0]);
+img.onload=()=>{
+let c=document.createElement("canvas");c.width=img.width;c.height=img.height;
+c.getContext("2d").drawImage(img,0,0);
+c.toBlob(blob=>{
+URL.revokeObjectURL(url);
+if(!blob)return show("WebP conversion not supported by this browser.");
+let a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="converted.webp";a.click();
+show("WebP file created.");
+},"image/webp",0.9);
+};
+img.onerror=()=>{URL.revokeObjectURL(url);show("Could not read image.");};
+img.src=url;
+});break;}
+case 16:{
+let f=field("subs","Paste SRT or VTT subtitles","textarea"),s=field("seconds","Seconds to shift (+ or -)","number");
+action("Synchronize",()=>{
+let n=Number(s.value);if(!Number.isFinite(n))return show("Enter a valid number of seconds.");
+let out=shiftTime(f.value,n);show(out);download("shifted-subtitles.srt",out);
+});break;}
+case 17:{
+let f=field("vtt","Paste VTT subtitles","textarea");
+action("Convert to SRT",()=>{
+let out=f.value.replace(/^WEBVTT[^\n]*\n?/,"").replace(/^\s*NOTE[^\n]*(?:\n(?!\s*$)[^\n]*)*/gm,"").replace(/(\d{2}:\d{2}:\d{2})\.(\d{3})/g,"$1,$2").trim();
+show(out);download("converted.srt",out);
+});break;}
+case 18:{
+let f=field("site","Your website URL");
+action("Generate robots.txt",()=>{
+try{let u=new URL(f.value);if(!/^https?:$/.test(u.protocol))throw Error();
+let out="User-agent: *\nAllow: /\nSitemap: "+u.origin+"/sitemap.xml";
+show(out);download("robots.txt",out);
+}catch(e){show("Enter a valid website URL including https://");}
+});break;}
+case 19:{
+let f=field("urls","Enter one full page URL per line","textarea");
+action("Generate Sitemap",()=>{
+let urls=f.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+try{
+if(!urls.length)throw Error("Enter at least one URL.");
+let parsed=urls.map(x=>{let u=new URL(x);if(!/^https?:$/.test(u.protocol))throw Error();return u.href;});
+let esc=x=>x.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+let out='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+parsed.map(x=>"  <url><loc>"+esc(x)+"</loc></url>").join("\n")+"\n</urlset>";
+show(out);download("sitemap.xml",out,"application/xml");
+}catch(e){show(e.message||"Enter valid URLs.");}
+});break;}
+}
+w.scrollIntoView({behavior:"smooth",block:"start"});
+}
+</script>
 </body>
 </html>
