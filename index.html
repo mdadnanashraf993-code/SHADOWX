@@ -1,18 +1,233 @@
-﻿
-<title>Shadowx Tool - Free Online Tools for Everyone</title>
 
-<meta name="description" content="Use free online tools at Shadowx Tool. Validate JSON, generate QR codes, compress images, clean CSV files, format SQL and more. Fast, simple and easy to use.">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Shadowx Tool - Free online tools for files, text, coding and websites.">
+<meta name="theme-color" content="#09000f">
+<title>Shadowx Tool - Free Online Tools</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#09000f;color:#fff;font-family:Arial,sans-serif}
+header{text-align:center;padding:35px 15px 25px;background:linear-gradient(135deg,#10001d,#21003c);border-bottom:1px solid #7925a8}
+.logo{width:65px;height:65px;margin:auto;border:2px solid #c45cff;border-radius:18px;display:grid;place-items:center;font-size:27px;font-weight:bold;color:#fff;box-shadow:0 0 22px #a020f0}
+h1{color:#d8a4ff;margin:15px 0 8px;font-size:32px}
+header p{color:#c9b5d8;margin:0}
+.search{display:block;width:min(90%,550px);margin:25px auto;padding:14px;border-radius:10px;border:1px solid #8533b5;background:#160c20;color:white;font-size:16px;outline:none}
+.container{max-width:1100px;margin:25px auto;padding:0 15px}
+h2{color:#d8a4ff;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.tool{background:#160d20;border:1px solid #47205e;border-radius:13px;padding:20px;transition:.2s}
+.tool:hover{transform:translateY(-4px);border-color:#c45cff;box-shadow:0 0 16px #7117a5}
+.tool h3{margin:0 0 10px;color:#e0b5ff}
+.tool p{font-size:13px;color:#c5b6d0;min-height:35px}
+button{background:linear-gradient(90deg,#7415a7,#a020f0);color:white;border:0;padding:11px 17px;border-radius:8px;cursor:pointer;font-weight:bold}
+button:hover{filter:brightness(1.2)}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:10;overflow:auto;padding:25px 12px}
+.panel{max-width:650px;margin:30px auto;background:#160d20;border:1px solid #a020f0;border-radius:15px;padding:22px}
+.panel h2{margin-top:0}
+.close{float:right;background:#392044}
+input,textarea,select{width:100%;padding:12px;margin:9px 0;background:#09000f;border:1px solid #67328a;border-radius:7px;color:white}
+textarea{min-height:120px;resize:vertical}
+.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#09000f;padding:12px;border-radius:8px;margin-top:12px;color:#d8a4ff;min-height:30px}
+footer{text-align:center;padding:25px;color:#b9a5c8;border-top:1px solid #48205b;margin-top:40px}
+footer a{color:#d8a4ff;text-decoration:none}
+.hidden{display:none}
+</style>
+</head>
+<body>
 
-<meta name="robots" content="index, follow">
+<header>
+ <div class="logo">ST</div>
+ <h1>Shadowx Tool</h1>
+ <p>Simple tools for files, text, coding and websites.</p>
+</header>
 
-<meta name="keywords" content="free online tools, QR code generator, JSON validator, image compressor, CSV cleaner, SQL formatter, Shadowx Tool">
+<input class="search" id="search" placeholder="Search tools..." oninput="filterTools()">
 
-<link rel="canonical" href="https://fastidious-otter-6630ba.netlify.app/">
+<main class="container">
+ <h2>All Online Tools</h2>
+ <div class="grid" id="toolGrid"></div>
+</main>
 
-<meta property="og:title" content="Shadowx Tool - Free Online Tools">
+<div class="modal" id="modal">
+ <div class="panel">
+  <button class="close" onclick="closeTool()">Close ✕</button>
+  <h2 id="toolTitle">Tool</h2>
+  <div id="toolInputs"></div>
+  <button onclick="runTool()">Run Tool</button>
+  <div class="output" id="output">Your result will appear here.</div>
+ </div>
+</div>
 
-<meta property="og:description" content="Simple and useful free tools for files, text, coding and websites.">
+<footer>
+ <p>MADE BY - Adnan Ashraf</p>
+ <p><a href="https://www.instagram.com/shadowx.tools/" target="_blank" rel="noopener">Instagram @shadowx.tools</a></p>
+ <p>© 2026 Shadowx Tool. All rights reserved.</p>
+</footer>
 
-<meta property="og:url" content="https://fastidious-otter-6630ba.netlify.app/">
+<script>
+const tools=[
+["CSV Cleaner","Remove empty rows and extra spaces."],
+["File Diff Checker","Compare two text files."],
+["SHA-256 File Hash Calculator","Calculate a file's SHA-256 hash."],
+["JSON Validator","Check and format JSON."],
+["Bulk File Renamer","Preview new file names."],
+["Folder File List Maker","Create a list of selected files."],
+["Text to Binary Converter","Convert text into binary."],
+["Hexadecimal Converter","Convert text and hexadecimal."],
+["Cron Expression Checker","Check a basic cron expression."],
+["Chmod Calculator","Calculate file permissions."],
+["Regex Match Extractor","Extract matching text."],
+["SQL Query Formatter","Format SQL queries."],
+["SQL Table Generator","Generate a SQL table statement."],
+["HTML to JSX Converter","Convert common HTML attributes to JSX."],
+["SVG Optimizer","Remove comments and extra SVG whitespace."],
+["Image to WebP Converter","Convert an image to WebP."],
+["Subtitle Synchronizer","Shift subtitle timestamps."],
+["VTT to SRT Converter","Convert VTT subtitles to SRT."],
+["Robots.txt Generator","Create a robots.txt file."],
+["Sitemap XML Generator","Generate a simple sitemap."]
+];
 
-<meta property="og:type" content="website">
+let activeTool="";
+const grid=document.getElementById("toolGrid");
+
+tools.forEach((t,i)=>{
+ const card=document.createElement("div");
+ card.className="tool";
+ card.dataset.name=t[0].toLowerCase();
+ card.innerHTML=`<h3>${i+1}. ${t[0]}</h3><p>${t[1]}</p><button onclick="openTool(${i})">Open Tool</button>`;
+ grid.appendChild(card);
+});
+
+function filterTools(){
+ const q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".tool").forEach(c=>{
+  c.classList.toggle("hidden",!c.dataset.name.includes(q)&&!c.innerText.toLowerCase().includes(q));
+ });
+}
+function field(id,placeholder,type="text"){
+ return `<input id="${id}" type="${type}" placeholder="${placeholder}">`;
+}
+function area(id,placeholder){
+ return `<textarea id="${id}" placeholder="${placeholder}"></textarea>`;
+}
+function openTool(i){
+ activeTool=tools[i][0];
+ document.getElementById("toolTitle").textContent=activeTool;
+ document.getElementById("output").textContent="Your result will appear here.";
+ let html="";
+ switch(i){
+ case 0: html=area("a","Paste CSV content here");break;
+ case 1: html=area("a","First text") + area("b","Second text");break;
+ case 2: html=field("file","Choose a file","file");break;
+ case 3: html=area("a",'Paste JSON here');break;
+ case 4: html=field("a","File names separated by commas")+field("b","New base name");break;
+ case 5: html=field("file","Choose files","file");break;
+ case 6: html=area("a","Enter text");break;
+ case 7: html=area("a","Enter text or hexadecimal");break;
+ case 8: html=field("a","Example: */5 * * * *");break;
+ case 9: html=field("a","Enter permission number, e.g. 755");break;
+ case 10: html=field("a","Regex pattern")+area("b","Text to search");break;
+ case 11: html=area("a","Paste SQL query");break;
+ case 12: html=field("a","Table name")+area("b","Columns, e.g. id INT, name VARCHAR(100)");break;
+ case 13: html=area("a","Paste HTML");break;
+ case 14: html=area("a","Paste SVG code");break;
+ case 15: html=field("file","Choose image","file");break;
+ case 16: html=field("a","Shift seconds: e.g. 2 or -2")+area("b","Paste SRT subtitles");break;
+ case 17: html=area("a","Paste WEBVTT content");break;
+ case 18: html=field("a","Website URL")+field("b","Disallow path (optional)");break;
+ case 19: html=field("a","Website URL")+area("b","One URL per line");break;
+ }
+ document.getElementById("toolInputs").innerHTML=html;
+ document.getElementById("modal").style.display="block";
+}
+function closeTool(){document.getElementById("modal").style.display="none"}
+function val(id){return document.getElementById(id)?.value||""}
+function result(s){document.getElementById("output").textContent=s}
+function downloadText(name,text){
+ const blob=new Blob([text],{type:"text/plain"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href);
+}
+async function runTool(){
+ try{
+ let r="",a=val("a"),b=val("b");
+ switch(activeTool){
+ case "CSV Cleaner":
+  r=a.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).join("\n");break;
+ case "File Diff Checker":
+  r=a===b?"Both texts are identical.":"Texts are different.\n\nFirst text:\n"+a+"\n\nSecond text:\n"+b;break;
+ case "SHA-256 File Hash Calculator":{
+  const f=document.getElementById("file").files[0];if(!f)throw Error("Choose a file first.");
+  const hash=await crypto.subtle.digest("SHA-256",await f.arrayBuffer());
+  r=[...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,"0")).join("");break;
+ }
+ case "JSON Validator":
+  r=JSON.stringify(JSON.parse(a),null,2);break;
+ case "Bulk File Renamer":
+  r=a.split(",").map((x,i)=>`${x.trim()} → ${b||"file"}_${i+1}`).join("\n")+"\n\nPreview only. Original files are not renamed.";break;
+ case "Folder File List Maker":{
+  const fs=document.getElementById("file").files;
+  r=[...fs].map(f=>f.name).join("\n");downloadText("file-list.txt",r);break;
+ }
+ case "Text to Binary Converter":
+  r=[...new TextEncoder().encode(a)].map(x=>x.toString(2).padStart(8,"0")).join(" ");break;
+ case "Hexadecimal Converter":
+  if(/^[0-9a-fA-F ]+$/.test(a)&&a.replace(/\s/g,"").length%2===0){
+   r=new TextDecoder().decode(new Uint8Array(a.trim().split(/\s+/).join("").match(/.{2}/g).map(x=>parseInt(x,16))));
+  }else{
+   r=[...new TextEncoder().encode(a)].map(x=>x.toString(16).padStart(2,"0")).join(" ");
+  }break;
+ case "Cron Expression Checker":
+  r=a.trim().split(/\s+/).length===5?"Looks like a five-field cron expression. Check field ranges before using it.":"Invalid: expected five fields.";break;
+ case "Chmod Calculator":
+  if(!/^[0-7]{3,4}$/.test(a))throw Error("Enter a valid permission like 755.");
+  r="Permission: "+a+"\nOwner: "+parseInt(a.slice(-3,-2),8)+"\nGroup: "+parseInt(a.slice(-2,-1),8)+"\nOthers: "+parseInt(a.slice(-1),8);break;
+ case "Regex Match Extractor":{
+  const re=new RegExp(a,"g");r=(b.match(re)||[]).join("\n")||"No matches found.";break;
+ }
+ case "SQL Query Formatter":
+  r=a.replace(/\s+/g," ").replace(/\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|LIMIT|JOIN|LEFT JOIN|INNER JOIN|ON|AND|OR|INSERT INTO|VALUES|UPDATE|SET|DELETE FROM)\b/gi,"\n$1").trim();break;
+ case "SQL Table Generator":
+  if(!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(a))throw Error("Enter a valid table name.");
+  r=`CREATE TABLE ${a} (\n  ${b.split(",").map(x=>x.trim()).filter(Boolean).join(",\n  ")}\n);`;break;
+ case "HTML to JSX Converter":
+  r=a.replace(/\bclass=/g,"className=").replace(/\bfor=/g,"htmlFor=").replace(/<!--/g,"{/*").replace(/-->/g,"*/}");break;
+ case "SVG Optimizer":
+  r=a.replace(/<!--[\s\S]*?-->/g,"").replace(/>\s+</g,"><").replace(/\s{2,}/g," ").trim();break;
+ case "Image to WebP Converter":{
+  const f=document.getElementById("file").files[0];if(!f)throw Error("Choose an image.");
+  const img=new Image(),url=URL.createObjectURL(f);
+  img.src=url;await img.decode();
+  const c=document.createElement("canvas");c.width=img.width;c.height=img.height;c.getContext("2d").drawImage(img,0,0);
+  const blob=await new Promise(ok=>c.toBlob(ok,"image/webp",.85));if(!blob)throw Error("Conversion failed.");
+  const link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download="converted.webp";link.click();URL.revokeObjectURL(url);
+  r="WebP image downloaded.";break;
+ }
+ case "Subtitle Synchronizer":{
+  const shift=Number(a);if(!Number.isFinite(shift))throw Error("Enter shift seconds.");
+  r=b.replace(/(\d{2}):(\d{2}):(\d{2})[,.](\d{3})/g,(m,h,mi,s,ms)=>{
+   let n=((+h*3600)+(+mi*60)+(+s))*1000+(+ms)+shift*1000;n=Math.max(0,n);
+   const hh=Math.floor(n/3600000),mm=Math.floor(n%3600000/60000),ss=Math.floor(n%60000/1000),mmm=n%1000;
+   return `${String(hh).padStart(2,"0")}:${String(mm).padStart(2,"0")}:${String(ss).padStart(2,"0")},${String(mmm).padStart(3,"0")}`;
+  });break;
+ }
+ case "VTT to SRT Converter":
+  r=b.replace(/^WEBVTT[^\n]*\n/m,"").replace(/(\d{2}:\d{2}:\d{2})\.(\d{3})/g,"$1,$2").trim();break;
+ case "Robots.txt Generator":
+  if(!/^https?:\/\//i.test(a))throw Error("Enter a valid website URL.");
+  r="User-agent: *\nAllow: /\n"+(b?"Disallow: "+b+"\n":"")+"Sitemap: "+a.replace(/\/$/,"")+"/sitemap.xml";break;
+ case "Sitemap XML Generator":{
+  if(!/^https?:\/\//i.test(a))throw Error("Enter a valid website URL.");
+  const urls=[a,...b.split(/\r?\n/).filter(Boolean)];
+  r='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls.map(u=>'  <url><loc>'+u.replace(/&/g,"&amp;").replace(/</g,"&lt;")+'</loc></url>').join("\n")+'\n</urlset>';break;
+ }
+ }
+ result(r);
+ }catch(e){result("Error: "+e.message)}
+}
+</script>
+</body>
+</html>
