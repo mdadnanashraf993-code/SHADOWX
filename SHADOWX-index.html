@@ -1,44 +1,880 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHADOWX TOOL</title>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shadowx Tool - Free Online Tools for Everyone</title>
+<meta name="description" content="Use free online tools at Shadowx Tool. Clean CSV files, compare text, calculate SHA-256 hashes, validate JSON, format SQL and more.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="free online tools, CSV cleaner, JSON validator, file hash calculator, SQL formatter, coding tools, Shadowx Tool">
+<link rel="canonical" href="https://fastidious-otter-6630ba.netlify.app/">
+
+<meta property="og:title" content="Shadowx Tool - Free Online Tools">
+<meta property="og:description" content="Simple and useful free tools for files, text, coding and websites.">
+<meta property="og:url" content="https://fastidious-otter-6630ba.netlify.app/">
+<meta property="og:type" content="website">
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#09000f;color:#fff;font-family:Arial,sans-serif}header{text-align:center;padding:30px 12px;border-bottom:1px solid #552078}.logo{display:inline-grid;place-items:center;width:54px;height:54px;border:2px solid #b44dff;border-radius:15px;color:#b44dff;font-size:24px;font-weight:bold;box-shadow:0 0 15px #a020f0;margin-bottom:10px}h1{color:#b44dff;text-shadow:0 0 15px #a020f0;margin:0}header p{color:#c9b5d8}#search{display:block;width:min(90%,600px);margin:25px auto;padding:13px 17px;border:1px solid #b44dff;border-radius:30px;background:#160b20;color:white;font-size:16px}.grid{width:92%;max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:17px}.card{background:#160b20;border:1px solid #552078;border-radius:14px;padding:20px}.card:hover{border-color:#b44dff;box-shadow:0 0 15px #7020a0;transform:translateY(-3px)}.card h3{color:#c45aff;margin:0 0 10px}.card p{color:#c9b5d8;font-size:14px;min-height:40px;line-height:1.4}button{border:0;border-radius:22px;padding:10px 17px;background:#8b2be2;color:white;font-weight:bold;cursor:pointer}button:hover{background:#b44dff}footer{text-align:center;margin-top:50px;padding:25px;border-top:1px solid #552078;background:#0d0314}footer p{font-weight:bold}.insta{display:inline-flex;align-items:center;gap:8px;color:#c45aff;text-decoration:none;font-weight:bold}small{display:block;color:#806c90;margin-top:15px}#modal{display:none;position:fixed;inset:0;z-index:9;overflow:auto;background:#000d;padding:15px}.dialog{max-width:750px;margin:25px auto;background:#160b20;border:1px solid #b44dff;border-radius:15px;padding:20px}.dialog h2{color:#c45aff}.close{float:right;background:#392047}.field{margin:12px 0}.field label{display:block;margin-bottom:6px;color:#dec8ee}textarea,input[type=text],input[type=number],select{width:100%;padding:11px;background:#09000f;color:white;border:1px solid #75409a;border-radius:8px}textarea{min-height:110px}input[type=file]{max-width:100%;color:white}.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#09000f;border:1px solid #43205a;border-radius:8px;padding:12px;margin-top:15px;min-height:42px}.actions{display:flex;gap:10px;margin-top:12px}.hint{color:#bda6cc;font-size:13px}
-</style></head><body>
-<header><div class="logo">AS</div><h1>SHADOWX TOOL</h1><p>Welcome to Shadowx tool</p><p>Simple tools for files, text, coding and websites.</p></header>
-<input id="search" placeholder="Search your tools..."><main id="grid" class="grid"></main>
-<footer><p>MADE BY - Adnan Ashraf</p><a class="insta" href="https://www.instagram.com/adnanx249/" target="_blank" rel="noopener noreferrer"><svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>@adnanx249</a><small>© 2026 SHADOWX TOOL. All Rights Reserved.</small></footer>
-<div id="modal"><div class="dialog"><button id="close" class="close">Close ✕</button><h2 id="title"></h2><div id="form"></div><div class="actions"><button id="run">Run Tool</button><button id="clear">Clear</button></div><div id="out" class="output">Your result appears here.</div></div></div>
+*{box-sizing:border-box}
+body{
+margin:0;
+background:#050817;
+color:#fff;
+font-family:Arial,sans-serif;
+}
+header{
+text-align:center;
+padding:30px 12px;
+border-bottom:1px solid #56328c;
+background:#080d20;
+}
+.logo{
+display:grid;
+place-items:center;
+width:60px;
+height:60px;
+margin:0 auto 12px;
+border:2px solid #a855f7;
+border-radius:15px;
+color:#c084fc;
+font-size:26px;
+font-weight:bold;
+box-shadow:0 0 18px #9333ff77;
+}
+h1{
+color:#c084fc;
+text-shadow:0 0 15px #9333ff;
+margin:0;
+}
+header p{color:#c4b5d5}
+#search{
+display:block;
+width:min(90%,600px);
+margin:25px auto;
+padding:13px 17px;
+border:1px solid #a855f7;
+border-radius:30px;
+background:#10182e;
+color:white;
+font-size:16px;
+}
+.grid{
+width:92%;
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:17px;
+}
+.card{
+background:#10182e;
+border:1px solid #49316c;
+border-radius:14px;
+padding:20px;
+transition:.2s;
+}
+.card:hover{
+border-color:#a855f7;
+box-shadow:0 0 15px #7020a0;
+transform:translateY(-3px);
+}
+.card h3{color:#c084fc;margin:0 0 10px}
+.card p{
+color:#c4b5d5;
+font-size:14px;
+min-height:40px;
+line-height:1.5;
+}
+button{
+border:0;
+border-radius:22px;
+padding:10px 17px;
+background:#7135d9;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+button:hover{background:#9333ea}
+button:disabled{opacity:.6;cursor:wait}
+footer{
+text-align:center;
+margin-top:50px;
+padding:25px;
+border-top:1px solid #49316c;
+background:#080d20;
+}
+footer p{font-weight:bold}
+.insta{
+display:inline-flex;
+align-items:center;
+gap:8px;
+color:#c084fc;
+text-decoration:none;
+font-weight:bold;
+}
+.insta:hover{color:white}
+footer a{color:#c084fc;text-decoration:none}
+small{
+display:block;
+color:#9299b5;
+margin-top:15px;
+}
+#modal{
+display:none;
+position:fixed;
+inset:0;
+z-index:9;
+overflow:auto;
+background:#000d;
+padding:15px;
+}
+.dialog{
+max-width:750px;
+margin:25px auto;
+background:#10182e;
+border:1px solid #a855f7;
+border-radius:15px;
+padding:20px;
+}
+.dialog h2{color:#c084fc}
+.close{float:right;background:#392047}
+.field{margin:12px 0}
+.field label{
+display:block;
+margin-bottom:6px;
+color:#dec8ee;
+}
+textarea,input[type=text],input[type=number],select{
+width:100%;
+padding:11px;
+background:#050817;
+color:white;
+border:1px solid #75409a;
+border-radius:8px;
+}
+textarea{min-height:110px;resize:vertical}
+input[type=file]{max-width:100%;color:white}
+.output{
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+background:#050817;
+border:1px solid #49316c;
+border-radius:8px;
+padding:12px;
+margin-top:15px;
+min-height:42px;
+}
+.output a{color:#c084fc}
+.actions{display:flex;gap:10px;margin-top:12px}
+.hint{color:#bda6cc;font-size:13px}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">ST</div>
+<h1>SHADOWX TOOL</h1>
+<p>Welcome to Shadowx tool</p>
+<p>Simple tools for files, text, coding and websites.</p>
+</header>
+
+<input id="search" placeholder="Search your tools..." aria-label="Search tools">
+
+<main id="grid" class="grid"></main>
+
+<footer>
+<p>MADE BY - Adnan Ashraf</p>
+
+<a class="insta"
+href="https://www.instagram.com/shadowx.tools/"
+target="_blank"
+rel="noopener noreferrer">
+Instagram: @shadowx.tools
+</a>
+
+<p>
+<a href="https://fastidious-otter-6630ba.netlify.app/">Visit Shadowx Tool</a>
+</p>
+
+<p>
+<a href="about.html">About Us</a> |
+<a href="contact.html">Contact Us</a> |
+<a href="privacy.html">Privacy Policy</a> |
+<a href="terms.html">Terms & Conditions</a>
+</p>
+
+<small>© 2026 SHADOWX TOOL. All Rights Reserved.</small>
+</footer>
+
+<div id="modal">
+<div class="dialog">
+
+<button id="close" class="close">Close ✕</button>
+<h2 id="title"></h2>
+
+<div id="form"></div>
+
+<div class="actions">
+<button id="run">Run Tool</button>
+<button id="clear">Clear</button>
+</div>
+
+<div id="out" class="output">Your result appears here.</div>
+
+</div>
+</div>
+
 <script>
-const names=["CSV Cleaner","File Diff Checker","File Hash Calculator","JSON Validator","Bulk File Renamer","Folder File List Maker","Text to Binary Converter","Hexadecimal Converter","Cron Expression Checker","Chmod Permission Calculator","Regex Match Extractor","SQL Query Formatter","SQL Table Generator","HTML to JSX Converter","SVG Optimizer","Image to WebP Converter","Subtitle Synchronizer","VTT to SRT Converter","Robots.txt Generator","Sitemap XML Generator"];
-const desc=["Remove blank and duplicate CSV rows.","Compare two text inputs line by line.","Calculate SHA-256 for a file.","Validate and format JSON.","Prepare numbered names for selected files.","Export a list of files in a folder.","Convert text to binary and back.","Convert text to hexadecimal and back.","Check basic five-field cron syntax.","Convert chmod octal permissions to symbols.","Extract matches using a regular expression.","Format a basic SQL query.","Generate a CREATE TABLE statement.","Convert common HTML attributes to JSX.","Minify SVG markup.","Convert an image to WebP.","Shift SRT subtitle timestamps.","Convert WebVTT subtitles to SRT.","Generate a robots.txt file.","Generate a sitemap.xml file."];
-const grid=document.querySelector('#grid'),modal=document.querySelector('#modal'),form=document.querySelector('#form'),out=document.querySelector('#out');let active=0;
-names.forEach((n,i)=>{let c=document.createElement('article');c.className='card';c.innerHTML=`<h3>${i+1}. ${n}</h3><p>${desc[i]}</p><button>Open Tool</button>`;c.querySelector('button').onclick=()=>open(i);grid.append(c)});
-document.querySelector('#search').oninput=e=>[...grid.children].forEach(c=>c.style.display=c.innerText.toLowerCase().includes(e.target.value.toLowerCase())?'':'none');
-function f(label,id,type='textarea',extra=''){return `<div class="field"><label>${label}</label>${type==='file'?`<input id="${id}" type="file" ${extra}>`:type==='textarea'?`<textarea id="${id}" placeholder="${extra}"></textarea>`:`<input id="${id}" type="${type}" placeholder="${extra}">`}</div>`}
-function open(i){active=i;document.querySelector('#title').textContent=names[i];out.textContent='Your result appears here.';let s='';
-switch(i){case 0:s=f('CSV file','file','file','accept=".csv"');break;case 1:s=f('First text','a')+f('Second text','b');break;case 2:s=f('Select file','file','file');break;case 3:s=f('JSON text','json');break;case 4:s=f('Select files','files','file','multiple')+f('New base name','base','text','renamed')+'<p class="hint">Browser security does not allow renaming original files directly; this tool lists proposed names.</p>';break;case 5:s=f('Select folder','folder','file','webkitdirectory multiple');break;case 6:case 7:s=f('Text / encoded value','value')+`<div class="field"><label>Direction</label><select id="dir"><option value="to">Encode</option><option value="from">Decode</option></select></div>`;break;case 8:s=f('Cron expression','cron','text','*/5 * * * *');break;case 9:s=f('Octal permission','perm','text','755');break;case 10:s=f('Text','txt')+f('Regex','regex','text','[A-Za-z]+')+f('Flags','flags','text','g');break;case 11:s=f('SQL query','sql');break;case 12:s=f('Table name','table','text','users')+f('Columns (one per line: name TYPE)','cols');break;case 13:s=f('HTML code','html');break;case 14:s=f('SVG code','svg');break;case 15:s=f('Image file','img','file','accept="image/*"');break;case 16:s=f('SRT content','srt')+f('Shift seconds (+/-)','shift','number','2');break;case 17:s=f('VTT content','vtt');break;case 18:s=f('Website URL','site','text','https://example.com')+f('Sitemap URL (optional)','map','text','https://example.com/sitemap.xml');break;case 19:s=f('Full URLs, one per line','urls');break}
-form.innerHTML=s;modal.style.display='block'}
-function v(id){return document.getElementById(id)?.value||''}function files(id){return [...(document.getElementById(id)?.files||[])]}
-function show(s){out.textContent=s}function dl(name,data,type='text/plain'){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([data],{type}));a.href=u;a.download=name;a.textContent='Download '+name;out.innerHTML='';out.append(a);setTimeout(()=>URL.revokeObjectURL(u),60000)}
-function msTime(t){let m=t.match(/(\d\d):(\d\d):(\d\d),(\d{3})/);return m?((+m[1]*3600+ +m[2]*60+ +m[3])*1000+ +m[4]):null}function stamp(n){n=Math.max(0,n);let h=Math.floor(n/3600000);n%=3600000;let m=Math.floor(n/60000);n%=60000;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(Math.floor(n/1000)).padStart(2,'0')},${String(n%1000).padStart(3,'0')}`}
-async function run(){try{switch(active){
-case 0:{let a=files('file')[0];if(!a)throw Error('Choose a CSV file.');let lines=(await a.text()).replace(/^\uFEFF/,'').split(/\r?\n/),seen=new Set(),clean=lines.filter(x=>x.trim()&&!seen.has(x)&&(seen.add(x),true));dl('cleaned.csv',clean.join('\r\n'),'text/csv');break}
-case 1:{let a=v('a').split(/\r?\n/),b=v('b').split(/\r?\n/),r=[];for(let i=0;i<Math.max(a.length,b.length);i++)if(a[i]!==b[i])r.push(`Line ${i+1}: - ${a[i]??'(missing)'} / + ${b[i]??'(missing)'}`);show(r.join('\n')||'No differences found.');break}
-case 2:{let a=files('file')[0];if(!a)throw Error('Choose a file.');if(!crypto.subtle)throw Error('SHA-256 requires HTTPS.');let h=await crypto.subtle.digest('SHA-256',await a.arrayBuffer());show([...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join(''));break}
-case 3:show(JSON.stringify(JSON.parse(v('json')),null,2));break;
-case 4:{let a=files('files');if(!a.length)throw Error('Choose files.');let b=v('base')||'renamed';show(a.map((x,i)=>`${b}_${i+1}${x.name.includes('.')?'.'+x.name.split('.').pop():''}`).join('\n')+'\n\nThese are proposed names only; browser security prevents changing originals.');break}
-case 5:{let a=files('folder');if(!a.length)throw Error('Choose a folder.');dl('folder-file-list.txt',a.map(x=>x.webkitRelativePath||x.name).join('\n'));break}
-case 6:case 7:{let s=v('value');if(v('dir')==='to'){let b=new TextEncoder().encode(s);show([...b].map(x=>active===6?x.toString(2).padStart(8,'0'):x.toString(16).padStart(2,'0')).join(' '))}else{let t=s.trim().replace(/\s+/g,'');let re=active===6?/^(?:[01]{8})+$/:/^(?:[0-9a-f]{2})+$/i;if(!re.test(t))throw Error('Invalid encoded input.');let arr=t.match(/.{2,8}/g).map(x=>parseInt(x,active===6?2:16));show(new TextDecoder().decode(new Uint8Array(arr)))}break}
-case 8:{let p=v('cron').trim().split(/\s+/);show(p.length===5&&p.every(x=>/^[\\d*/?,\\-]+$/.test(x))?'Basic five-field cron format looks okay.':'Invalid: use five fields (minute hour day month weekday).');break}
-case 9:{let s=v('perm');if(!/^[0-7]{3,4}$/.test(s))throw Error('Enter octal digits such as 755.');let n=parseInt(s.slice(-3),8),r='';for(let x of [6,3,0]){let q=n>>x&7;r+=(q&4?'r':'-')+(q&2?'w':'-')+(q&1?'x':'-')}show(r);break}
-case 10:{let re=new RegExp(v('regex'),v('flags')||'g'),m=[...v('txt').matchAll(re)];show(m.map(x=>x[0]).join('\n')||'No matches found.');break}
-case 11:{let s=v('sql').trim();if(!s)throw Error('Enter SQL.');show(s.replace(/\s+/g,' ').replace(/\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|HAVING|LIMIT|INSERT INTO|VALUES|UPDATE|SET|DELETE FROM|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|ON)\b/gi,'\n$1').trim());break}
-case 12:{let t=v('table'),c=v('cols').split(/\r?\n/).map(x=>x.trim()).filter(Boolean);if(!/^[A-Za-z_]\\w*$/.test(t)||!c.length||c.some(x=>!/^[A-Za-z_]\\w*\\s+[A-Za-z][\\w]*(?:\\([\\d, ]+\\))?$/i.test(x)))throw Error('Use table name and columns like id INT, name VARCHAR(100).');show(`CREATE TABLE ${t} (\\n  ${c.join(',\\n  ')}\\n);`);break}
-case 13:show(v('html').replace(/\bclass=/g,'className=').replace(/\bfor=/g,'htmlFor=').replace(/<br\\s*>/gi,'<br />').replace(/<hr\\s*>/gi,'<hr />')+'\n\nBasic conversion only; check complex JSX manually.');break;
-case 14:{let s=v('svg').replace(/<!--[\\s\\S]*?-->/g,'').replace(/>\\s+</g,'><').replace(/\\s{2,}/g,' ').trim();if(!/<svg[\\s>]/i.test(s))throw Error('Paste valid SVG.');dl('optimized.svg',s,'image/svg+xml');break}
-case 15:{let a=files('img')[0];if(!a)throw Error('Choose an image.');let im=new Image(),u=URL.createObjectURL(a);im.onload=()=>{let c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;c.getContext('2d').drawImage(im,0,0);c.toBlob(b=>{if(!b){show('WebP conversion unsupported in this browser.');return}let link=document.createElement('a'),z=URL.createObjectURL(b);link.href=z;link.download='converted.webp';link.textContent='Download converted.webp';out.innerHTML='';out.append(link);URL.revokeObjectURL(u)},'image/webp',.9)};im.onerror=()=>show('Could not load image.');im.src=u;show('Converting...');break}
-case 16:{let s=v('srt'),d=Number(v('shift'))*1000;if(!Number.isFinite(d))throw Error('Enter shift seconds.');let r=s.replace(/(\\d{2}:\\d{2}:\\d{2},\\d{3})\\s*-->\\s*(\\d{2}:\\d{2}:\\d{2},\\d{3})/g,(m,a,b)=>`${stamp(msTime(a)+d)} --> ${stamp(msTime(b)+d)}`);dl('shifted.srt',r);break}
-case 17:{let s=v('vtt').replace(/^\\uFEFF?WEBVTT[^\\n]*\\n?/,'').replace(/(\\d{2}:\\d{2}:\\d{2})\\.(\\d{3})/g,'$1,$2').replace(/(\\d{2}:\\d{2})\\.(\\d{3})/g,'00:$1,$2'),i=0,r=s.split(/\\r?\\n\\r?\\n/).filter(Boolean).map(b=>b.includes('-->')?`${++i}\\n${b}`:b).join('\\n\\n');dl('converted.srt',r);break}
-case 18:{let s=v('site').trim();if(!/^https?:\\/\\//i.test(s))throw Error('Enter full website URL.');dl('robots.txt',`User-agent: *\\nAllow: /\\nSitemap: ${v('map').trim()||s.replace(/\\/$/,'')+'/sitemap.xml'}\\n`);break}
-case 19:{let a=v('urls').split(/\\r?\\n/).map(x=>x.trim()).filter(Boolean);if(!a.length||a.some(x=>!/^https?:\\/\\//i.test(x)))throw Error('Enter full URLs, one per line.');let esc=x=>x.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');dl('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n'+a.map(x=>`<url><loc>${esc(x)}</loc></url>`).join('\\n')+'\\n</urlset>','application/xml');break}
-}}catch(e){show('Error: '+e.message)}}
-document.querySelector('#run').onclick=run;document.querySelector('#close').onclick=()=>modal.style.display='none';document.querySelector('#clear').onclick=()=>{form.querySelectorAll('input,textarea').forEach(x=>x.value='');show('Cleared.')};
-</script></body></html>
+"use strict";
+
+const names = [
+"CSV Cleaner",
+"File Diff Checker",
+"File Hash Calculator",
+"JSON Validator",
+"Bulk File Renamer",
+"Folder File List Maker",
+"Text to Binary Converter",
+"Hexadecimal Converter",
+"Cron Expression Checker",
+"Chmod Permission Calculator",
+"Regex Match Extractor",
+"SQL Query Formatter",
+"SQL Table Generator",
+"HTML to JSX Converter",
+"SVG Optimizer",
+"Image to WebP Converter",
+"Subtitle Synchronizer",
+"VTT to SRT Converter",
+"Robots.txt Generator",
+"Sitemap XML Generator"
+];
+
+const desc = [
+"Remove duplicate and blank CSV rows.",
+"Compare two text files.",
+"Calculate SHA-256 hash.",
+"Validate JSON data.",
+"Prepare bulk rename plan.",
+"Create a list of files in a folder.",
+"Convert text to binary.",
+"Convert text and hexadecimal.",
+"Check basic cron syntax.",
+"Calculate Linux file permissions.",
+"Extract regex matches.",
+"Format SQL queries.",
+"Generate SQL table statements.",
+"Convert basic HTML to JSX.",
+"Remove comments and extra SVG whitespace.",
+"Convert images to WebP.",
+"Shift subtitle timestamps.",
+"Convert VTT subtitles to SRT.",
+"Generate robots.txt.",
+"Generate sitemap XML."
+];
+
+const grid = document.querySelector("#grid");
+const modal = document.querySelector("#modal");
+const form = document.querySelector("#form");
+const out = document.querySelector("#out");
+
+let active = 0;
+
+names.forEach((name,i)=>{
+const card = document.createElement("article");
+card.className = "card";
+
+const heading = document.createElement("h3");
+heading.textContent = (i+1)+". "+name;
+
+const paragraph = document.createElement("p");
+paragraph.textContent = desc[i];
+
+const button = document.createElement("button");
+button.textContent = "Open Tool";
+button.onclick = ()=>openTool(i);
+
+card.append(heading,paragraph,button);
+grid.append(card);
+});
+
+document.querySelector("#search").oninput = e=>{
+[...grid.children].forEach(card=>{
+card.style.display =
+card.innerText.toLowerCase().includes(e.target.value.toLowerCase())
+? "" : "none";
+});
+};
+
+function field(label,id,type="textarea",extra=""){
+if(type==="file"){
+return `<div class="field">
+<label>${label}</label>
+<input id="${id}" type="file" ${extra}>
+</div>`;
+}
+
+if(type==="textarea"){
+return `<div class="field">
+<label>${label}</label>
+<textarea id="${id}" placeholder="${extra}"></textarea>
+</div>`;
+}
+
+return `<div class="field">
+<label>${label}</label>
+<input id="${id}" type="${type}" placeholder="${extra}">
+</div>`;
+}
+
+function openTool(i){
+active=i;
+document.querySelector("#title").textContent=names[i];
+out.textContent="Your result appears here.";
+
+let s="";
+
+switch(i){
+
+case 0:
+s=field("CSV file","file","file",'accept=".csv"');
+break;
+
+case 1:
+s=field("First text","a")+field("Second text","b");
+break;
+
+case 2:
+s=field("Select file","file","file");
+break;
+
+case 3:
+s=field("JSON text","json");
+break;
+
+case 4:
+s=field("Select files","files","file","multiple")+
+field("New base name","base","text","renamed")+
+'<p class="hint">This tool prepares proposed names only. It does not rename original files.</p>';
+break;
+
+case 5:
+s=field("Select folder","folder","file","webkitdirectory multiple");
+break;
+
+case 6:
+case 7:
+s=field("Text / encoded value","value")+
+'<div class="field"><label>Direction</label><select id="dir"><option value="to">Encode</option><option value="from">Decode</option></select></div>';
+break;
+
+case 8:
+s=field("Cron expression","cron","text","*/5 * * * *");
+break;
+
+case 9:
+s=field("Octal permission","perm","text","755");
+break;
+
+case 10:
+s=field("Text","txt")+
+field("Regex","regex","text","[A-Za-z]+")+
+field("Flags","flags","text","g");
+break;
+
+case 11:
+s=field("SQL query","sql");
+break;
+
+case 12:
+s=field("Table name","table","text","users")+
+field("Columns (one per line: name TYPE)","cols");
+break;
+
+case 13:
+s=field("HTML code","html");
+break;
+
+case 14:
+s=field("SVG code","svg");
+break;
+
+case 15:
+s=field("Image file","img","file",'accept="image/*"');
+break;
+
+case 16:
+s=field("SRT content","srt")+
+field("Shift seconds (+/-)","shift","number","2");
+break;
+
+case 17:
+s=field("VTT content","vtt");
+break;
+
+case 18:
+s=field("Website URL","site","text","https://example.com")+
+field("Sitemap URL (optional)","map","text","https://example.com/sitemap.xml");
+break;
+
+case 19:
+s=field("Full URLs, one per line","urls");
+break;
+}
+
+form.innerHTML=s;
+modal.style.display="block";
+}
+
+function value(id){
+return document.getElementById(id)?.value || "";
+}
+
+function selectedFiles(id){
+return [...(document.getElementById(id)?.files || [])];
+}
+
+function show(text){
+out.textContent=text;
+}
+
+function downloadFile(name,data,type="text/plain"){
+const blob=new Blob([data],{type});
+const url=URL.createObjectURL(blob);
+const link=document.createElement("a");
+
+link.href=url;
+link.download=name;
+link.textContent="Download "+name;
+
+out.innerHTML="";
+out.append(link);
+
+setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+
+function timeMilliseconds(t){
+const m=t.match(/(\d{2}):(\d{2}):(\d{2}),(\d{3})/);
+if(!m)return null;
+
+return (
+Number(m[1])*3600000+
+Number(m[2])*60000+
+Number(m[3])*1000+
+Number(m[4])
+);
+}
+
+function timestamp(n){
+n=Math.max(0,n);
+
+const h=Math.floor(n/3600000);
+n%=3600000;
+
+const m=Math.floor(n/60000);
+n%=60000;
+
+const s=Math.floor(n/1000);
+const ms=n%1000;
+
+return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")},${String(ms).padStart(3,"0")}`;
+}
+
+async function runTool(){
+
+const runButton=document.querySelector("#run");
+runButton.disabled=true;
+
+try{
+
+switch(active){
+
+case 0:{
+const file=selectedFiles("file")[0];
+if(!file)throw Error("Choose a CSV file.");
+
+const lines=(await file.text())
+.replace(/^\uFEFF/,"")
+.split(/\r?\n/);
+
+const seen=new Set();
+
+const clean=lines.filter(line=>{
+if(!line.trim() || seen.has(line))return false;
+seen.add(line);
+return true;
+});
+
+downloadFile("cleaned.csv",clean.join("\r\n"),"text/csv");
+break;
+}
+
+case 1:{
+const a=value("a").split(/\r?\n/);
+const b=value("b").split(/\r?\n/);
+const result=[];
+
+for(let i=0;i<Math.max(a.length,b.length);i++){
+if(a[i]!==b[i]){
+result.push(`Line ${i+1}: - ${a[i]??"(missing)"} / + ${b[i]??"(missing)"}`);
+}
+}
+
+show(result.join("\n")||"No differences found.");
+break;
+}
+
+case 2:{
+const file=selectedFiles("file")[0];
+if(!file)throw Error("Choose a file.");
+
+if(!crypto.subtle)throw Error("SHA-256 requires HTTPS.");
+
+const hash=await crypto.subtle.digest(
+"SHA-256",
+await file.arrayBuffer()
+);
+
+show([...new Uint8Array(hash)]
+.map(x=>x.toString(16).padStart(2,"0"))
+.join(""));
+break;
+}
+
+case 3:{
+const data=JSON.parse(value("json"));
+show(JSON.stringify(data,null,2));
+break;
+}
+
+case 4:{
+const files=selectedFiles("files");
+if(!files.length)throw Error("Choose files.");
+
+const base=value("base")||"renamed";
+
+show(files.map((file,i)=>{
+const ext=file.name.includes(".")
+?"."+file.name.split(".").pop():"";
+
+return `${base}_${i+1}${ext}`;
+}).join("\n")+
+"\n\nThese are proposed names only. Original files are unchanged.");
+break;
+}
+
+case 5:{
+const files=selectedFiles("folder");
+if(!files.length)throw Error("Choose a folder.");
+
+downloadFile(
+"folder-file-list.txt",
+files.map(file=>file.webkitRelativePath||file.name).join("\n")
+);
+break;
+}
+
+case 6:
+case 7:{
+const text=value("value");
+
+if(value("dir")==="to"){
+
+const bytes=new TextEncoder().encode(text);
+
+show([...bytes].map(byte=>
+active===6
+?byte.toString(2).padStart(8,"0")
+:byte.toString(16).padStart(2,"0")
+).join(" "));
+
+}else{
+
+const clean=text.trim().replace(/\s+/g,"");
+
+const valid=active===6
+?/^(?:[01]{8})+$/
+:/^(?:[0-9a-f]{2})+$/i;
+
+if(!valid.test(clean))throw Error("Invalid encoded input.");
+
+const size=active===6?8:2;
+const chunks=clean.match(new RegExp(`.{${size}}`,"g"));
+
+const bytes=chunks.map(x=>parseInt(x,active===6?2:16));
+
+show(new TextDecoder().decode(new Uint8Array(bytes)));
+}
+break;
+}
+
+case 8:{
+const parts=value("cron").trim().split(/\s+/);
+const valid=parts.length===5 &&
+parts.every(x=>/^[\d*/?,\-]+$/.test(x));
+
+show(valid
+?"Basic five-field cron format looks okay. This is a syntax check only."
+:"Invalid: use five fields (minute hour day month weekday).");
+break;
+}
+
+case 9:{
+const permission=value("perm");
+
+if(!/^[0-7]{3,4}$/.test(permission))
+throw Error("Enter octal digits such as 755.");
+
+const number=parseInt(permission.slice(-3),8);
+let result="";
+
+for(const shift of [6,3,0]){
+const digit=(number>>shift)&7;
+
+result+=
+(digit&4?"r":"-")+
+(digit&2?"w":"-")+
+(digit&1?"x":"-");
+}
+
+show(result);
+break;
+}
+
+case 10:{
+const regex=new RegExp(value("regex"),value("flags")||"g");
+const matches=[...value("txt").matchAll(regex)];
+
+show(matches.map(match=>match[0]).join("\n")||"No matches found.");
+break;
+}
+
+case 11:{
+const sql=value("sql").trim();
+if(!sql)throw Error("Enter SQL.");
+
+show(sql.replace(/\s+/g," ").replace(
+/\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|HAVING|LIMIT|INSERT INTO|VALUES|UPDATE|SET|DELETE FROM|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|ON)\b/gi,
+"\n$1"
+).trim());
+break;
+}
+
+case 12:{
+const table=value("table");
+const columns=value("cols").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+
+if(!/^[A-Za-z_]\w*$/.test(table))
+throw Error("Invalid table name.");
+
+if(!columns.length ||
+columns.some(x=>!/^[A-Za-z_]\w*\s+[A-Za-z][\w]*(?:\([\d, ]+\))?$/i.test(x))){
+throw Error("Use columns like id INT or name VARCHAR(100).");
+}
+
+show(`CREATE TABLE ${table} (\n  ${columns.join(",\n  ")}\n);`);
+break;
+}
+
+case 13:{
+const html=value("html");
+
+show(html
+.replace(/\bclass=/g,"className=")
+.replace(/\bfor=/g,"htmlFor=")
+.replace(/<br\s*>/gi,"<br />")
+.replace(/<hr\s*>/gi,"<hr />")
++"\n\nBasic conversion only. Check complex JSX manually.");
+break;
+}
+
+case 14:{
+const svg=value("svg");
+
+const optimized=svg
+.replace(/<!--[\s\S]*?-->/g,"")
+.replace(/>\s+</g,"><")
+.replace(/\s{2,}/g," ")
+.trim();
+
+if(!/<svg[\s>]/i.test(optimized))
+throw Error("Paste valid SVG.");
+
+downloadFile("optimized.svg",optimized,"image/svg+xml");
+break;
+}
+
+case 15:{
+const file=selectedFiles("img")[0];
+if(!file)throw Error("Choose an image.");
+
+const image=new Image();
+const url=URL.createObjectURL(file);
+
+image.onload=()=>{
+try{
+const canvas=document.createElement("canvas");
+canvas.width=image.naturalWidth;
+canvas.height=image.naturalHeight;
+
+canvas.getContext("2d").drawImage(image,0,0);
+
+canvas.toBlob(blob=>{
+if(!blob){
+show("WebP conversion unsupported in this browser.");
+URL.revokeObjectURL(url);
+return;
+}
+
+const convertedURL=URL.createObjectURL(blob);
+const link=document.createElement("a");
+
+link.href=convertedURL;
+link.download="converted.webp";
+link.textContent="Download converted.webp";
+
+out.innerHTML="";
+out.append(link);
+
+setTimeout(()=>URL.revokeObjectURL(convertedURL),60000);
+URL.revokeObjectURL(url);
+
+},"image/webp",0.9);
+
+}catch(error){
+show("Conversion failed: "+error.message);
+URL.revokeObjectURL(url);
+}
+};
+
+image.onerror=()=>{
+show("Could not load image.");
+URL.revokeObjectURL(url);
+};
+
+image.src=url;
+show("Converting image...");
+break;
+}
+
+case 16:{
+const text=value("srt");
+const shift=Number(value("shift"))*1000;
+
+if(!Number.isFinite(shift))
+throw Error("Enter valid shift seconds.");
+
+const result=text.replace(
+/(\d{2}:\d{2}:\d{2},\d{3})\s*-->\s*(\d{2}:\d{2}:\d{2},\d{3})/g,
+(match,start,end)=>{
+return `${timestamp(timeMilliseconds(start)+shift)} --> ${timestamp(timeMilliseconds(end)+shift)}`;
+}
+);
+
+downloadFile("shifted.srt",result);
+break;
+}
+
+case 17:{
+let text=value("vtt").replace(/^\uFEFF/,"");
+
+text=text.replace(/^WEBVTT[^\n]*\r?\n?/,"");
+
+text=text
+.replace(/(\d{2}:\d{2}:\d{2})\.(\d{3})/g,"$1,$2")
+.replace(/(\d{2}:\d{2})\.(\d{3})/g,"00:$1,$2");
+
+let index=0;
+
+const result=text.split(/\r?\n\r?\n/)
+.filter(block=>block.trim())
+.map(block=>block.includes("-->")
+?`${++index}\n${block}`
+:block)
+.join("\n\n");
+
+downloadFile("converted.srt",result);
+break;
+}
+
+case 18:{
+const site=value("site").trim();
+
+if(!/^https?:\/\//i.test(site))
+throw Error("Enter full website URL.");
+
+const sitemap=value("map").trim()||
+site.replace(/\/$/,"")+"/sitemap.xml";
+
+downloadFile(
+"robots.txt",
+`User-agent: *\nAllow: /\nSitemap: ${sitemap}\n`
+);
+break;
+}
+
+case 19:{
+const urls=value("urls")
+.split(/\r?\n/)
+.map(x=>x.trim())
+.filter(Boolean);
+
+if(!urls.length || urls.some(x=>!/^https?:\/\//i.test(x)))
+throw Error("Enter full URLs, one per line.");
+
+const escapeXML=text=>text
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;");
+
+const xml=
+'<?xml version="1.0" encoding="UTF-8"?>\n'+
+'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+
+urls.map(url=>`<url><loc>${escapeXML(url)}</loc></url>`).join("\n")+
+'\n</urlset>';
+
+downloadFile("sitemap.xml",xml,"application/xml");
+break;
+}
+
+}
+
+}catch(error){
+show("Error: "+error.message);
+}finally{
+runButton.disabled=false;
+}
+}
+
+document.querySelector("#run").onclick=runTool;
+
+document.querySelector("#close").onclick=()=>{
+modal.style.display="none";
+};
+
+document.querySelector("#clear").onclick=()=>{
+form.querySelectorAll("input,textarea").forEach(input=>{
+if(input.type==="file")input.value="";
+else input.value="";
+});
+
+form.querySelectorAll("select").forEach(select=>{
+select.selectedIndex=0;
+});
+
+show("Cleared.");
+};
+
+modal.addEventListener("click",event=>{
+if(event.target===modal){
+modal.style.display="none";
+}
+});
+
+</script>
+
+</body>
+</html>
