@@ -1,33 +1,22 @@
 {
-  "background_color": "#09000f",
-  "description": "Shadowx Tool - Free online tools for files, text, coding and websites.",
-  "dir": "ltr",
-  "display": "standalone",
+  "id": "/",
   "name": "Shadowx Tool",
-  "orientation": "any",
-  "scope": "/",
   "short_name": "Shadowx",
+  "description": "Shadowx Tool - Free online tools for files, text, coding and websites.",
   "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "dir": "ltr",
+  "lang": "en",
+  "background_color": "#09000f",
   "theme_color": "#09000f",
   "icons": [
     {
-      "src": "https://fastidious-otter-6630ba.netlify.app/favicon.ico",
-      "type": "image/x-icon",
-      "isSquare": false,
-      "isPng": false,
-      "isWebp": false,
-      "isJpg": false,
-      "width": 0,
-      "is512x512": false,
-      "is256x256": false,
-      "is192x192": false
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
-  ],
-  "id": "/",
-  "lang": "en",
-  "categories": [
-    "developer",
-    "productivity",
-    "utilities"
   ]
 }
